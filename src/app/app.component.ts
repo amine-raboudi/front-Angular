@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CrudAgService } from './crud-ag.service';
-import {NgForm} from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-root',
@@ -12,12 +13,14 @@ export class AppComponent {
   data: any;
   newData: any;
   existingData: any;
- 
+  parentMessage = "Message from parent";
+
   
-  constructor(private service: CrudAgService) {
+  constructor(private service: CrudAgService,private dialog: MatDialog) {
  
+  } 
   
-  }
+  
   
   // Read
 getData() {
@@ -28,6 +31,7 @@ getData() {
     
   });
 }
+
 
 // Create
 createNewData() {
@@ -61,7 +65,8 @@ this.getData();
 
 }
 
-}
+
+} 
 
 
 

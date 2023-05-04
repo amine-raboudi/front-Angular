@@ -1,0 +1,30 @@
+
+
+    <form (ngSubmit)="updateUser()">
+        
+      <label>
+        Email:
+        <input type="email" name="email" [(ngModel)]="email">
+      </label><br>
+      <label>
+          password:
+          <input type="password" name="password"[(ngModel)]="password">
+        </label><br>
+        <label>
+          roles:
+          <select name="roles"value="roles"id="roles"[(ngModel)]="roles">
+              <option value="ROLE_CLIENT">ROLE_CLIENT</option>
+              <option value="ROLE_AGENT">ROLE_AGENT</option>
+              <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+              </select>
+        </label><br>
+        <label>
+          is_verified:
+          <input type="radio" id="NO" name="age" value="0"[(ngModel)]="is_verified">
+          <label for="NO">NO</label><br>
+          <input type="radio" id="YES" name="age" value="1"[(ngModel)]="is_verified">
+          <label for="YES">YES </label><br>  
+        </label><br>
+      <button type="submit">Save</button>
+    </form>
+

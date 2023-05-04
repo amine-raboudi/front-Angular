@@ -1,7 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+@import 'node_modules/bootstrap/scss/bootstrap';
 body{
-    background-color: rgb(161, 182, 238);
+    background-color: rgb(79, 82, 82);
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.my-dialog-class .mat-dialog-container {
+    background-color: rgb(226, 222, 222); /* set the background color of the dialog */
+    color: black; /* set the text color of the dialog */
+  }
+  

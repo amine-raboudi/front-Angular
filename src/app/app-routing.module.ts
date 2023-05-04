@@ -4,11 +4,13 @@ import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { ClientComponent } from './client/client.component';
 import { HomeComponent } from './home/home.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 const routes: Routes = [
   { path: '', component: AppComponent },
-  { path: 'admin', component: ClientComponent },
-  { path: 'home', component: HomeComponent }
+  { path: 'client', component: ClientComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'admin', component: SidebarComponent }
 
 ];
 

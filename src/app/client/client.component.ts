@@ -1,6 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from './client.service';
 
+import { MatDialog ,MatDialogConfig} from '@angular/material/dialog';
+import { AdduserComponent } from '../adduser/adduser.component';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+import { ShowClientComponent } from '../show-client/show-client.component';
+import { EditClientComponent } from '../edit-client/edit-client.component';
+
+
+
 @Component({
   selector: 'app-client',
   templateUrl: './client.component.html',
@@ -8,19 +17,65 @@ import { ClientService } from './client.service';
 })
 export class ClientComponent implements OnInit {
   users: any;
-  Edit = false;
   data: any;
   Search=false;
   id: any;
+  idf:any;
   email: any;
   password: any;
   roles: any;
   is_verified: any;
-  Post=false;
+  clientID:any;
 
-
-  constructor(private clientService: ClientService) {
+  constructor(private clientService: ClientService,private dialog: MatDialog,private router: Router ) {
    }
+//dialog
+openAddUserDialog():void {
+  const dialogConfig: MatDialogConfig = {
+    panelClass: 'dialog-background',
+  };
+  const dialogRef = this.dialog.open(AdduserComponent,{
+   
+    width : '800px',
+    height : '400px',
+    panelClass : 'my-dialog-class'
+  });
+
+  dialogRef.afterClosed().subscribe()
+
+}
+
+openShowUserDialog(id:any ):void {
+  const dialogConfig=new MatDialogConfig ;
+  
+  const clientID  =this.clientService.getUserById(id).subscribe((data: any) => {
+    this.users = this.data;
+    console.log(data)
+    const dialogRef = this.dialog.open(ShowClientComponent,{
+      data:data,
+      width : '800px',
+      height : '400px',
+      panelClass : 'my-dialog-class'
+    });
+    dialogRef.afterClosed().subscribe()
+
+  });
+ 
+} 
+openEditUserDialog(data:any):void {
+ 
+  
+  
+    const dialogRef = this.dialog.open(EditClientComponent,{
+      data:data,
+      width : '800px',
+      height : '400px',
+      panelClass : 'my-dialog-class'
+    });
+    dialogRef.afterClosed().subscribe()
+
+ 
+} 
 
   ngOnInit() {
     this.clientService.getUsers().subscribe((data: any) => {
@@ -30,27 +85,30 @@ export class ClientComponent implements OnInit {
   }
 
   deleteUser(id: number) {
-    this.clientService.deleteUser(id).subscribe(
-      response => console.log('User deleted successfully.'),
-      error => console.error('Error deleting user:', error)
-      
-    );
     
-  }
-  updateUser(userId:any,userData:any) {
-    this.clientService.updateUser(userId, userData).subscribe(
-      response => console.log('User updated successfully.'),
-      error => console.error('Error updating user:', error)
-    );
+    Swal.fire({
+      icon: 'warning',
+      title: 'Deleting',
+      text: 'are you sure?',
+      confirmButtonText: 'Delete',
+      cancelButtonText:'Cancel',
+      showCancelButton: true,
 
-  }
+    }).then((result) => {
+      if (result.isConfirmed) {this.clientService.deleteUser(id).subscribe(
+        response => console.log('User deleted successfully.'),
+        error => console.error('Error deleting user:', error));
+    
+    this.router.navigateByUrl('/admin', { skipLocationChange: true }).then(() => {
+      const currentUrl = this.router.url;
+      window.history.replaceState({}, '', currentUrl);
+      window.location.reload();
+    });
+  }});
+    }
   
-  showEdit() {
-    this.Edit = true;
-}
-AddClient() {
-  this.Post = true;
-}
+
+
 showSearch(){
   this.Search = true;
 }
@@ -61,15 +119,11 @@ SearchID() {
     console.log(data);
   });
 }
-PostUser() {
-  const data = { 
-    email: this.email,
-    password:this.password,
-    roles:["ROLE_CLIENT"],
-    is_verified:this.is_verified
-   };
-  this.clientService.addUser( data).subscribe(response => {
-    console.log(response);
-  });
-}
+
+
+
+
+
+
+
 }

@@ -1,0 +1,29 @@
+<h1 mat-dialog-titles style="text-align:center;color:rgb(7 ,35 ,112);">Add Client</h1>
+<form (ngSubmit)="PostUser()">
+       
+  <input type="email" class="form-control" placeholder="Enter an email" id="email" name="email" [(ngModel)]="email"><br>
+  <input type="password" id="password" name="password" class="form-control" placeholder="Enter an password"[(ngModel)]="password"><br>
+  
+    <label>
+      <div class="form-check form-check-inline">
+      <p class="lead">
+      Account Verified:
+      </p>
+    </div>
+
+      <div class="form-check form-check-inline">
+      <input class="form-check-input"type="radio" id="NO" name="age"  value="0"[(ngModel)]="is_verified">
+      <label for="NO">NO</label><br>
+      </div>
+      <div class="form-check form-check-inline">
+      <input class="form-check-input"type="radio" id="YES" name="age" value="1"[(ngModel)]="is_verified">
+      <label for="YES">YES </label><br> 
+      </div> 
+    </label><br>
+    <div class="position-absolute top-5000 start-50 translate-middle">
+  <button type="submit"class="btn btn-primary "style="margin-left:40px;margin-right:50px;margin-top:100px">Add client</button>
+  
+  <button type="button"class="btn btn-secondary"style="margin-top:100px"(click)="onCancel()">Cancel</button>
+    </div>
+</form>
+
