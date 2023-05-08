@@ -37,7 +37,7 @@ openAddUserDialog():void {
   const dialogRef = this.dialog.open(AdduserComponent,{
    
     width : '800px',
-    height : '400px',
+    height : '500px',
     panelClass : 'my-dialog-class'
   });
 
@@ -46,7 +46,6 @@ openAddUserDialog():void {
 }
 
 openShowUserDialog(id:any ):void {
-  const dialogConfig=new MatDialogConfig ;
   
   const clientID  =this.clientService.getUserById(id).subscribe((data: any) => {
     this.users = this.data;
@@ -62,17 +61,20 @@ openShowUserDialog(id:any ):void {
   });
  
 } 
-openEditUserDialog(data:any):void {
+openEditUserDialog(data:any,id:any):void {
  
   
-  
+  const clientID  =this.clientService.getUserById(id).subscribe((data: any) => {
+    this.data = data;
     const dialogRef = this.dialog.open(EditClientComponent,{
-      data:data,
+      data:data[0],
       width : '800px',
-      height : '400px',
+      height : '500px',
       panelClass : 'my-dialog-class'
     });
+    console.log(data[0]);
     dialogRef.afterClosed().subscribe()
+  });
 
  
 } 
@@ -87,9 +89,9 @@ openEditUserDialog(data:any):void {
   deleteUser(id: number) {
     
     Swal.fire({
-      icon: 'warning',
+      icon: 'question',
       title: 'Deleting',
-      text: 'are you sure?',
+      text: 'Are you sure to delete this client ?',
       confirmButtonText: 'Delete',
       cancelButtonText:'Cancel',
       showCancelButton: true,

@@ -20,6 +20,11 @@ export class ShowClientComponent {
     
   }
   onCancel() {
-    this.dialogRef.close();
+    this.dialogRef.close(this.data);
+    this.router.navigateByUrl('/admin', { skipLocationChange: true }).then(() => {
+      const currentUrl = this.router.url;
+      window.history.replaceState({}, '', currentUrl);
+      window.location.reload();
+    });
   }
 }

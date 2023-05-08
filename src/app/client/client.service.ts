@@ -24,6 +24,8 @@ export class ClientService {
 
   updateUser(id: number, user: any) {
     return this.http.put('http://127.0.0.1:8000/client/update/'+id, user);
+    
+
   }
 
   deleteUser(id: number) {

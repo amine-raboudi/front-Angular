@@ -8,13 +8,7 @@
         </div>
       </form>
       
-      <div *ngIf="data">
-       <ul>
-        <li   *ngFor="let data of data">
-          {{data.id}}******{{data.email}}*****{{data.roles}}
-        </li>
-       </ul>
-      </div>
+      
     </div>
     <div class="col-sm-3">
       <button class="btn btn-success" style="margin-left:150px"(click)="openAddUserDialog()">New</button>  
@@ -29,26 +23,27 @@
       <table class="table table-bordered">
         <thead >
           <tr >
-            <th scope="col">ID</th>
-            <th scope="col">Email</th>
-            <th scope="col">Password</th>
-            <th scope="col">Role</th>
-            <th scope="col">Verified?</th>
-            <th colspan="3">Actions</th>
+            <th style="text-align:center;" scope="col">ID</th>
+            <th style="text-align:center;" scope="col">Email</th>
+            <th style="text-align:center;" scope="col">Password</th>
+            <th style="text-align:center;" scope="col">Role</th>
+            <th style="text-align:center;" scope="col">Verified?</th>
+            <th style="text-align:center;" colspan="3">Actions</th>
 
           </tr>
         </thead>
         <tbody   >
           <tr   *ngFor="let i of users">
-            <th scope="row">{{i.id}}</th>
-            <td>{{i.email}}</td>
-            <td >{{i.password}}</td>
-            <td >{{i.roles}}</td>
-            <td *ngIf="i.is_verified"style="text-align:center;color:green"><b>YES</b></td>
-            <td *ngIf="!i.is_verified"style="text-align:center;color:red"><b>NO</b></td>
+            <th style="text-align:center;" scope="row">{{i.id}}</th>
+            <td style="text-align:center;">{{i.email}}</td>
+            <td style="text-align:center;">{{i.password}}</td>
+            <td style="text-align:center;">{{i.roles}}</td>
+            <td *ngIf="i.is_verified"style="text-align:center;color:green"><i class="fa fa-check" style="font-size:20px"></i></td>
+            <td *ngIf="!i.is_verified"style="text-align:center;color:red"><b><i class="fa fa-close" style="font-size:20px"></i>
+            </b></td>
             <td colspan="3">
               <button class="btn btn-danger"style="margin-left:25px"(click)="deleteUser(i.id)">Delete</button>
-              <button class="btn btn-info" style="margin-left:25px" (click)="openEditUserDialog(i)">Edit</button>
+              <button class="btn btn-info" style="margin-left:25px" (click)="openEditUserDialog(i,i.id)">Edit</button>
               <button class="btn btn-secondary" style="margin-left:25px" (click)="openShowUserDialog(i.id)">Show</button>
             </td>
           </tr>
