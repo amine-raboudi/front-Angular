@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { ClientService } from '../client/client.service';
 import {  MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { AdduserComponent } from '../adduser/adduser.component';
+import { AdduserComponent } from 'src/app/adduser/adduser.component';
 
 @Component({
   selector: 'app-show-client',

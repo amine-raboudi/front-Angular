@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { ClientService } from '../client/client.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { ClientService } from '../client/client.service';
 
 
 
@@ -44,7 +44,8 @@ export class AdduserComponent implements OnInit{
       roles:["ROLE_CLIENT"],
       is_verified:this.is_verified
      };
-    this.clientService.addUser( data).subscribe(response => {
+     console.log(data);
+    this.clientService.addUser(data).subscribe(response => {
       console.log(response);
     });
     this.dialogRef.close(data);

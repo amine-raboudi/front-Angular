@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ClientService } from './client.service';
 
 import { MatDialog ,MatDialogConfig} from '@angular/material/dialog';
-import { AdduserComponent } from '../adduser/adduser.component';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { ShowClientComponent } from '../show-client/show-client.component';
 import { EditClientComponent } from '../edit-client/edit-client.component';
+import { AdduserComponent } from '../adduser/adduser.component';
 
 
 
