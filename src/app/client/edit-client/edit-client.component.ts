@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { ClientService } from '../client/client.service';
+import { ClientService } from '../client.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -51,7 +51,7 @@ export class EditClientComponent {
       }).then((result) => {
       if (result.isConfirmed) {
     
-    this.router.navigateByUrl('/admin', { skipLocationChange: true }).then(() => {
+    this.router.navigateByUrl('/admin/clients', { skipLocationChange: true }).then(() => {
       const currentUrl = this.router.url;
       window.history.replaceState({}, '', currentUrl);
       window.location.reload();

@@ -1,26 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ClientService } from 'src/app/client/client.service';
 import Swal from 'sweetalert2';
-import { ClientService } from '../client/client.service';
-
-
-
+import { AgenceService } from '../agence.service';
 
 @Component({
-  selector: 'app-adduser',
-  templateUrl: './adduser.component.html',
-  styleUrls: ['./adduser.component.scss']
+  selector: 'app-add-agence',
+  templateUrl: './add-agence.component.html',
+  styleUrls: ['./add-agence.component.scss']
 })
-export class AdduserComponent implements OnInit{
-
+export class AddAgenceComponent {
   email: any;
   password: any;
   is_verified: any;
+  status: any;
 
   constructor(
-    private dialogRef: MatDialogRef<AdduserComponent>,
-    private clientService: ClientService,
+    private dialogRef: MatDialogRef<AddAgenceComponent>,
+    private agenceService: AgenceService,
     private router: Router, 
     
   ) {
@@ -41,11 +39,11 @@ export class AdduserComponent implements OnInit{
     const data = { 
       email: this.email,
       password:this.password,
-      roles:["ROLE_CLIENT"],
-      is_verified:this.is_verified
+      roles:["ROLE_AGENT"],
+      status:this.status
      };
      console.log(data);
-    this.clientService.addUser(data).subscribe(response => {
+    this.agenceService.addUser(data).subscribe(response => {
       console.log(response);
     });
     this.dialogRef.close(data);
@@ -53,12 +51,12 @@ export class AdduserComponent implements OnInit{
     Swal.fire({
       icon: 'success',
       title: 'Done!',
-      text: 'Client Added Successfully!',
+      text: 'Agence Added Successfully!',
       confirmButtonText: 'OK',
     }).then((result) => {
       if (result.isConfirmed) {
     
-    this.router.navigateByUrl('/admin', { skipLocationChange: true }).then(() => {
+    this.router.navigateByUrl('/admin/agencies', { skipLocationChange: true }).then(() => {
       const currentUrl = this.router.url;
       window.history.replaceState({}, '', currentUrl);
       window.location.reload();

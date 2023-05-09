@@ -4,19 +4,22 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CrudAgService } from './crud-ag.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClientComponent } from './client/client.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDialogModule} from "@angular/material/dialog";
-import { ShowClientComponent } from './show-client/show-client.component';
-import { EditClientComponent } from './edit-client/edit-client.component';
+import { ShowClientComponent } from './client/show-client/show-client.component';
+import { EditClientComponent } from './client/edit-client/edit-client.component';
 import { LoginComponent } from './login/login.component';
 import { AgenceComponent } from './agence/agence.component';
-import { AdduserComponent } from './adduser/adduser.component';
+import { AdduserComponent } from './client/adduser/adduser.component';
 import { AdminComponent } from './admin/admin.component';
+import { AddAgenceComponent } from './agence/add-agence/add-agence.component';
+import { EditAgenceComponent } from './agence/edit-agence/edit-agence.component';
+import { ShowAgenceComponent } from './agence/show-agence/show-agence.component';
 
 @NgModule({
 
@@ -29,7 +32,8 @@ import { AdminComponent } from './admin/admin.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    NgbDropdownModule
     ],
   providers: [CrudAgService],
   bootstrap: [AppComponent],
@@ -43,6 +47,9 @@ import { AdminComponent } from './admin/admin.component';
      LoginComponent,
      AgenceComponent,
      AdminComponent,
+     AddAgenceComponent,
+     EditAgenceComponent,
+     ShowAgenceComponent,
     
     
   ],

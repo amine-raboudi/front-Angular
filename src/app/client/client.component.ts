@@ -4,9 +4,9 @@ import { ClientService } from './client.service';
 import { MatDialog ,MatDialogConfig} from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { ShowClientComponent } from '../show-client/show-client.component';
-import { EditClientComponent } from '../edit-client/edit-client.component';
-import { AdduserComponent } from '../adduser/adduser.component';
+import { ShowClientComponent } from './show-client/show-client.component';
+import { EditClientComponent } from './edit-client/edit-client.component';
+import { AdduserComponent } from './adduser/adduser.component';
 
 
 
@@ -18,9 +18,7 @@ import { AdduserComponent } from '../adduser/adduser.component';
 export class ClientComponent implements OnInit {
   users: any;
   data: any;
-  Search=false;
   id: any;
-  idf:any;
   email: any;
   password: any;
   roles: any;
@@ -111,9 +109,7 @@ openEditUserDialog(data:any,id:any):void {
   
 
 
-showSearch(){
-  this.Search = true;
-}
+
 
 SearchID() {
   this.clientService.getUserById(this.id).subscribe(data => {

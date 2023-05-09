@@ -24,7 +24,67 @@
       <div class="shadow-lg p-3 mb-5  rounded"style="background-color:white;margin-top:20px">Larger shadow</div>
       <div class="shadow-lg p-3 mb-5  rounded"style="background-color:white;margin-top:20px">
         
-       jjj  
+        <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+                <form (submit)="SearchID()">
+                  <div class="input-group mb-3">
+                  <input type="text" class="form-control" placeholder="Enter an ID"id="id" name="id" [(ngModel)]="id">
+                  <button class="btn btn-outline-secondary"type="submit">Search</button>
+                  </div>
+                </form>
+                
+                
+              </div>
+              <div class="col-sm-3">
+                <button class="btn btn-success" style="margin-left:150px"(click)="openAddUserDialog()">New</button>  
+            </div>
+            </div>
+          </div>
+          
+          
+           <hr>
+           
+          
+                <table class="table table-bordered">
+                  <thead >
+                    <tr >
+                      <th style="text-align:center;" scope="col">ID</th>
+                      <th style="text-align:center;" scope="col">Email</th>
+                      <th style="text-align:center;" scope="col">Password</th>
+                      <th style="text-align:center;" scope="col">Role</th>
+                      <th style="text-align:center;" scope="col">Status</th>
+                      <th style="text-align:center;" scope="col">Actions</th>
+                      <th style="text-align:center;" colspan="3">Edit</th>
+          
+                    </tr>
+                  </thead>
+                  <tbody   >
+                    <tr   *ngFor="let i of users">
+                      <th style="text-align:center;" scope="row">{{i.id}}</th>
+                      <td style="text-align:center;">{{i.email}}</td>
+                      <td style="text-align:center;">{{i.password}}</td>
+                      <td style="text-align:center;">{{i.roles}}</td>
+                      <td *ngIf="i.status=='Waiting'"style="text-align:center;color:orange"><i class="fa fa-clock-o" style="font-size:20px"></i></td>
+                      <td *ngIf="i.status=='Accepted'"style="text-align:center;color:green"><b><i class="fa fa-check" style="font-size:20px"></i></b></td>
+                      <td *ngIf="i.status=='Denied'"style="text-align:center;color:red"><b><i class="fa fa-close" style="font-size:20px"></i></b></td>
+                      <td style="text-align:center;"><div ngbDropdown>
+                        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle><i class="fa fa-gear" style="font-size:24px"></i></button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownBasic1" ngbDropdownMenu>
+                          <button class="dropdown-item"style="color:green">Accept</button>
+                          <button class="dropdown-item"style="color:red">Deny</button>
+                          
+                        </div>
+                      </div></td>
+                      <td colspan="3">
+                        <button class="btn btn-danger"  style="margin-left:5px"  (click)="deleteUser(i.id)">Delete</button>
+                        <button class="btn btn-info" style="margin-left:5px"  (click)="openEditUserDialog(i,i.id)">Update</button>
+                        <button class="btn btn-secondary" style="margin-left:5px" (click)="openShowUserDialog(i.id)">Show</button>
+                      </td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
                 
       </div>
   

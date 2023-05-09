@@ -1,8 +1,8 @@
 import { Component, Inject } from '@angular/core';
-import { ClientService } from '../client/client.service';
+import { ClientService } from '../client.service';
 import {  MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { AdduserComponent } from 'src/app/adduser/adduser.component';
+import { AdduserComponent } from 'src/app/client/adduser/adduser.component';
 
 @Component({
   selector: 'app-show-client',
@@ -21,7 +21,7 @@ export class ShowClientComponent {
   }
   onCancel() {
     this.dialogRef.close(this.data);
-    this.router.navigateByUrl('/admin', { skipLocationChange: true }).then(() => {
+    this.router.navigateByUrl('/admin/clients', { skipLocationChange: true }).then(() => {
       const currentUrl = this.router.url;
       window.history.replaceState({}, '', currentUrl);
       window.location.reload();

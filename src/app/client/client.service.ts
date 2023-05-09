@@ -6,12 +6,11 @@ import { Injectable } from '@angular/core';
 })
 export class ClientService {
 
-  private apiUrl = 'http://127.0.0.1:8000/clientAll';
 
   constructor(private http: HttpClient) { }
 
   getUsers() {
-    return this.http.get(this.apiUrl );
+    return this.http.get('http://127.0.0.1:8000/clientAll' );
   }
 
   getUserById(id: number) {
