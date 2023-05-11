@@ -7,7 +7,19 @@ import { Router } from '@angular/router';
 import { ShowClientComponent } from './show-client/show-client.component';
 import { EditClientComponent } from './edit-client/edit-client.component';
 import { AdduserComponent } from './adduser/adduser.component';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
+export interface User {
+  id: string;
+  email: string;
+  password:string;
+  roles:[];
+  is_verified:boolean;
+}
 
 
 @Component({
@@ -25,8 +37,21 @@ export class ClientComponent implements OnInit {
   is_verified: any;
   clientID:any;
 
-  constructor(private clientService: ClientService,private dialog: MatDialog,private router: Router ) {
-   }
+  displayedColumns: string[] = ['id', 'email', 'password','roles','is_verified','edit'];
+  dataSource = new MatTableDataSource<User>();
+
+
+  constructor(private clientService: ClientService,
+    private _snackBar: MatSnackBar,
+    private dialog: MatDialog,private router: Router,
+    private domSanitizer: DomSanitizer,
+    private http: HttpClient,
+    private matIconRegistry: MatIconRegistry, ) {
+    this.matIconRegistry.addSvgIcon(
+      'my-icon', this.domSanitizer.bypassSecurityTrustResourceUrl('/assets/my-icon.svg')
+      );
+
+  }
 //dialog
 openAddUserDialog():void {
   const dialogConfig: MatDialogConfig = {
@@ -78,9 +103,9 @@ openEditUserDialog(data:any,id:any):void {
 } 
 
   ngOnInit() {
-    this.clientService.getUsers().subscribe((data: any) => {
-      this.users = data;
-
+    this.http.get<User[]>('http://127.0.0.1:8000/clientAll').subscribe(data => {
+      this.dataSource.data = data;
+      console.log( this.dataSource.data)
     });
   }
 
@@ -98,17 +123,19 @@ openEditUserDialog(data:any,id:any):void {
       if (result.isConfirmed) {this.clientService.deleteUser(id).subscribe(
         response => console.log('User deleted successfully.'),
         error => console.error('Error deleting user:', error));
-    
-    this.router.navigateByUrl('/admin', { skipLocationChange: true }).then(() => {
-      const currentUrl = this.router.url;
-      window.history.replaceState({}, '', currentUrl);
-      window.location.reload();
-    });
+    this.openSnackBar('client deleted','OK');
+   
   }});
     }
   
 
-
+    openSnackBar(message: string, action: any) {
+      
+      this._snackBar.open(message, action, {
+        duration: 2000,
+        panelClass: 'blue-snackbar'
+      });
+    }
 
 
 SearchID() {

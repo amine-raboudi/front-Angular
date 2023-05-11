@@ -24,14 +24,14 @@
           </p>
         </div>
     
-        <div class="form-check form-check-inline">
-            <input class="form-check-input"type="radio" id="Waiting" name="Waiting"  value="Waiting"[(ngModel)]="data.status">
+        <div class="form-check form-check-inline" >
+            <input disable  class="form-check-input"type="radio" id="Waiting" name="Waiting"  value="Waiting"[(ngModel)]="data.status"  disabled>
             <label for="NO"class="form-check-label">Waiting</label>
             <br>
-            <input class="form-check-input"type="radio" id="Accepted" name="Accepted" value="Accepted"[(ngModel)]="data.status">
-            <label for="YES"class="form-check-label">Accepted </label>
+            <input  disable class="form-check-input"type="radio" id="Accepted" name="Accepted" value="Accepted"[(ngModel)]="data.status"  disabled>
+            <label   for="YES"class="form-check-label">Accepted </label>
             <br> 
-            <input class="form-check-input"type="radio" id="Denied" name="Denied" value="Denied"[(ngModel)]="data.status">
+            <input  disable class="form-check-input"type="radio" id="Denied" name="Denied" value="Denied"[(ngModel)]="data.status"  disabled>
             <label for="YES"class="form-check-label">Denied </label>
             <br> 
         </div>

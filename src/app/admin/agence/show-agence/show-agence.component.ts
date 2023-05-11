@@ -1,8 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { AgenceService } from '../agence.service';
 import { Router } from '@angular/router';
 import { AddAgenceComponent } from '../add-agence/add-agence.component';
+import { AgenceService } from '../agence.service';
 
 @Component({
   selector: 'app-show-agence',
@@ -21,10 +21,7 @@ export class ShowAgenceComponent {
   }
   onCancel() {
     this.dialogRef.close(this.data);
-    this.router.navigateByUrl('/admin/agencies', { skipLocationChange: true }).then(() => {
-      const currentUrl = this.router.url;
-      window.history.replaceState({}, '', currentUrl);
-      window.location.reload();
-    });
+    
   }
+  
 }

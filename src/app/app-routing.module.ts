@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
-import { ClientComponent } from './client/client.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
-import { AgenceComponent } from './agence/agence.component';
+import { AgenceComponent } from './admin/agence/agence.component';
+import { ClientComponent } from './admin/client/client.component';
 
 const routes: Routes = [
   { path: '', component: AppComponent },

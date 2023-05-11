@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ClientService } from '../client.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 
@@ -19,6 +20,7 @@ export class AdduserComponent implements OnInit{
   is_verified: any;
 
   constructor(
+    private _snackBar: MatSnackBar,
     private dialogRef: MatDialogRef<AdduserComponent>,
     private clientService: ClientService,
     private router: Router, 
@@ -26,7 +28,13 @@ export class AdduserComponent implements OnInit{
   ) {
    
   }
-
+  openSnackBar(message: string, action: any) {
+      
+    this._snackBar.open(message, action, {
+      duration: 2000,
+      panelClass: 'blue-snackbar'
+    });
+  }
   ngOnInit() {
     
   
@@ -45,24 +53,20 @@ export class AdduserComponent implements OnInit{
       is_verified:this.is_verified
      };
      console.log(data);
-    this.clientService.addUser(data).subscribe(response => {
-      console.log(response);
-    });
-    this.dialogRef.close(data);
-    
     Swal.fire({
-      icon: 'success',
-      title: 'Done!',
-      text: 'Client Added Successfully!',
+      icon: 'question',
+      title: 'Adding',
+      text: 'Are you sure to add this client ?',
+      cancelButtonText:'Cancel',
+      showCancelButton: true,  
       confirmButtonText: 'OK',
     }).then((result) => {
       if (result.isConfirmed) {
-    
-    this.router.navigateByUrl('/admin/clients', { skipLocationChange: true }).then(() => {
-      const currentUrl = this.router.url;
-      window.history.replaceState({}, '', currentUrl);
-      window.location.reload();
-    });
+        this.clientService.addUser(data).subscribe(response => {
+          console.log(response);
+        });
+        this.dialogRef.close(data);
+        this.openSnackBar('client Added','OK');
       }});
 }
   

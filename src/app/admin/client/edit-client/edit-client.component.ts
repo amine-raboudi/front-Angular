@@ -1,8 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { ClientService } from '../client.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { ClientService } from '../client.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-client',
@@ -19,9 +20,15 @@ export class EditClientComponent {
   roles: any;
   is_verified: any;
   clientID:any;
-  constructor(    private dialogRef: MatDialogRef<EditClientComponent>, private clientService: ClientService,private dialog: MatDialog,private router: Router,@Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor( private _snackBar: MatSnackBar,   private dialogRef: MatDialogRef<EditClientComponent>, private clientService: ClientService,private dialog: MatDialog,private router: Router,@Inject(MAT_DIALOG_DATA) public data: any) {
   }
-
+  openSnackBar(message: string, action: any) {
+      
+    this._snackBar.open(message, action, {
+      duration: 2000,
+      panelClass: 'blue-snackbar'
+    });
+  }
   ngOnInit() {
     
   }
@@ -37,10 +44,7 @@ export class EditClientComponent {
     
     });
     
-    this.clientService.updateUser(id, data).subscribe(response => {
-      console.log(response);
-    });
-    this.dialogRef.close(data);
+  
     Swal.fire({
       icon: 'question',
       title: 'Updating',
@@ -50,11 +54,10 @@ export class EditClientComponent {
       showCancelButton: true,  
       }).then((result) => {
       if (result.isConfirmed) {
-    
-    this.router.navigateByUrl('/admin/clients', { skipLocationChange: true }).then(() => {
-      const currentUrl = this.router.url;
-      window.history.replaceState({}, '', currentUrl);
-      window.location.reload();
+      this.clientService.updateUser(id, data).subscribe(response => {
+      console.log(response);
     });
+    this.dialogRef.close(data);
+        this.openSnackBar('client updated','OK');
       }});
 };}

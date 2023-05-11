@@ -2,23 +2,73 @@ import { Component } from '@angular/core';
 import { AgenceService } from './agence.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { AddAgenceComponent } from './add-agence/add-agence.component';
 import Swal from 'sweetalert2';
-import { EditAgenceComponent } from './edit-agence/edit-agence.component';
+import { EmailService } from './email.service';
+import { AddAgenceComponent } from './add-agence/add-agence.component';
 import { ShowAgenceComponent } from './show-agence/show-agence.component';
+import { EditAgenceComponent } from './edit-agence/edit-agence.component';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+
+export interface User {
+  id: string;
+  email: string;
+  password:string;
+  roles:[];
+  status:string;
+}
+
+
 
 @Component({
   selector: 'app-agence',
   templateUrl: './agence.component.html',
   styleUrls: ['./agence.component.scss']
 })
+
+
+
+
 export class AgenceComponent {
   data: any;
   id: any;
   users: any;
+  recipient: any;
+  subject: any;
+  message:  any;
 
-    constructor(private agenceService: AgenceService,private dialog: MatDialog,private router: Router ) {
+  displayedColumns: string[] = ['id', 'email', 'password','roles','status','action','edit'];
+  dataSource = new MatTableDataSource<User>();
+
+  
+  
+    constructor(private http: HttpClient,
+      private matIconRegistry: MatIconRegistry,
+       private domSanitizer: DomSanitizer,
+       private emailService: EmailService,
+       private agenceService: AgenceService,
+       private _snackBar: MatSnackBar,
+
+       private dialog: MatDialog,private router: Router ) 
+       {
+
+      this.matIconRegistry.addSvgIcon(
+        'my-icon', this.domSanitizer.bypassSecurityTrustResourceUrl('/assets/my-icon.svg')
+        );
+
   }
+  openSnackBar(message: string, action: any) {
+      
+    this._snackBar.open(message, action, {
+      duration: 2000,
+      panelClass: 'blue-snackbar'
+    });
+  }
+
   openAddUserDialog():void {
     const dialogConfig: MatDialogConfig = {
       panelClass: 'dialog-background',
@@ -78,7 +128,7 @@ deleteUser(id: number) {
   Swal.fire({
     icon: 'question',
     title: 'Deleting',
-    text: 'Are you sure to delete this client ?',
+    text: 'Are you sure to delete this agence ?',
     confirmButtonText: 'Delete',
     cancelButtonText:'Cancel',
     showCancelButton: true,
@@ -88,19 +138,37 @@ deleteUser(id: number) {
       response => console.log('User deleted successfully.'),
       error => console.error('Error deleting user:', error));
   
-  this.router.navigateByUrl('/admin/agencies', { skipLocationChange: true }).then(() => {
-    const currentUrl = this.router.url;
-    window.history.replaceState({}, '', currentUrl);
-    window.location.reload();
-  });
+      this.openSnackBar('agence deleted','OK');
+   
 }});
   }
 
-ngOnInit() {
-  this.agenceService.getUsers().subscribe((data: any) => {
-    this.users = data;
-
+  ngOnInit() {
+    this.http.get<User[]>('http://127.0.0.1:8000/agenceAll').subscribe(data => {
+      this.dataSource.data = data;
+      console.log( this.dataSource.data)
+    });
+  }
+  
+Accept(email:any,data:any,id:any) {
+ 
+  this.emailService.sendEmail(email, 'tst', 'HI')
+  .subscribe(() => {
+      console.log('ok'); // success response from Symfony 5 API
   });
+  data.status="Accepted"  ;
+  this.agenceService.updateUser(id, data).subscribe();
+
+  
+}
+
+Deny(data:any,id:any) {
+ 
+  
+  data.status="Denied"  ;
+  this.agenceService.updateUser(id, data).subscribe();
+
+  
 }
   
 }
