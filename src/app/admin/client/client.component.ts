@@ -76,7 +76,7 @@ openShowUserDialog(id:any ):void {
     const dialogRef = this.dialog.open(ShowClientComponent,{
       data:data,
       width : '800px',
-      height : '400px',
+      height : '500px',
       panelClass : 'my-dialog-class'
     });
     dialogRef.afterClosed().subscribe()

@@ -11,8 +11,13 @@ export class AdminComponent {
 loadCl=false;
 loadAg=false;
 
+date = new Date();
 
-  constructor() { }
+
+  constructor() { 
+   
+
+  }
   
   ngOnInit(): void {
     

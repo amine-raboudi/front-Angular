@@ -33,6 +33,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import {MatCardModule} from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 const routes: Routes = [
@@ -43,6 +44,7 @@ const routes: Routes = [
 @NgModule({
 
   imports: [
+    MatRadioModule,
     MatGridListModule,
     MatCardModule,
     MatSnackBarModule,

@@ -1,16 +1,16 @@
 <div    class="container">
     <div *ngFor="let data of data | keyvalue">
-       <h1 mat-dialog-titles  style="color:rgb(7, 35, 112 );text-align:center">
+       <h1 mat-dialog-titles  style="color:#d8b9ed;text-align:center;margin-buttom:50px;">
           <b>Informations about  the client</b>
        </h1>
-         <hr>
+         <hr   style="margin-top:70px;">
          <div  class="row">
          <div class="col">
            
            <div  class="row">
                <div class="col">
-                 <h1 style="color:#0330AB;text-align:center">
-                    <b> ID:</b> <span  style="color:black"> {{ data.value.id }}</span>
+                 <h1 style="color:#e3544f;text-align:center">
+                    <b> ID:</b> <span  style="color:white"> {{ data.value.id }}</span>
                  </h1> 
                  </div>
              
@@ -22,8 +22,8 @@
            
            <div  class="row">
                <div class="col">
-                 <h1 style="color:#0330AB;text-align:center">
-                   <b> EMAIL:</b> <span  style="color:black"> {{ data.value.email }}</span>
+                 <h1 style="color:#e3544f;text-align:center">
+                   <b> EMAIL:</b> <span  style="color:white"> {{ data.value.email }}</span>
                  </h1> 
                  </div>
              
@@ -37,8 +37,8 @@
              
              <div  class="row">
                  <div class="col">
-                   <h1 style="color:#0330AB;text-align:center">
-                      <b> PASSWORD:</b>  <span  style="color:black"> {{ data.value.password }}</span>
+                   <h1 style="color:#e3544f;text-align:center">
+                      <b> PASSWORD:</b>  <span  style="color:white"> {{ data.value.password }}</span>
                    </h1> 
                    </div>
                
@@ -50,8 +50,8 @@
              
              <div  class="row">
                  <div class="col">
-                   <h1 style="color:#0330AB;text-align:center">
-                     <b> ROLE:</b>   <span  style="color:black"> {{ data.value.roles }}</span>
+                   <h1 style="color:#e3544f;text-align:center">
+                     <b> ROLE:</b>   <span  style="color:white"> {{ data.value.roles }}</span>
                    </h1> 
                    </div>
                
@@ -62,11 +62,11 @@
          </div>
          <div class="row">
           
-           <h1 style="color:#0330AB;text-align:center">
+           <h1 style="color:#e3544f;text-align:center">
                <b> Status:</b>  
-                <span *ngIf="data.value.status=='Waiting'" style="color:black;"> Waiting</span>
-                <span *ngIf="data.value.status=='Accepted'" style="color:black"> Accepted</span>
-                <span *ngIf="data.value.status=='Denied'" style="color:black"> Denied</span>
+                <span *ngIf="data.value.status=='Waiting'" style="color:white;"> Waiting</span>
+                <span *ngIf="data.value.status=='Accepted'" style="color:white"> Accepted</span>
+                <span *ngIf="data.value.status=='Denied'" style="color:white"> Denied</span>
 
              </h1> 
            
@@ -76,7 +76,7 @@
    </div>
    <hr>
    <div class="d-grid gap-2 col-6 mx-auto">
-   <button type="button"class="btn btn-primary btn-lg"(click)="onCancel()" style="text-align:center">Close</button>
-   </div>
+    <button  mat-flat-button style="background-color:#b3b0b5;margin-top:50px;" type="button"(click)="onCancel()">Cancel</button>
+  </div>
    
      

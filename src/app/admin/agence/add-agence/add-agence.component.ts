@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { AgenceService } from '../agence.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+
 @Component({
   selector: 'app-add-agence',
   templateUrl: './add-agence.component.html',
@@ -71,5 +72,6 @@ openSnackBar(message: string, action: any) {
     panelClass: 'blue-snackbar'
   });
 }
-  
+
+
 }

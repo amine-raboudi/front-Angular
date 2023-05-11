@@ -1,4 +1,4 @@
-<h1 mat-dialog-titles style="text-align:center;color:rgb(7 ,35 ,112);">Edit Client</h1>
+<h1 mat-dialog-titles style="text-align:center;color:#d8b9ed;">Edit Client</h1>
 <hr>
     <form (ngSubmit)="updateUser(data.id,data)">
         
@@ -37,9 +37,9 @@
         </div>
         <br>
         <div class="position-absolute top-5000 start-50 translate-middle">
-          <button type="submit"class="btn btn-primary "style="margin-left:40px;margin-right:50px;margin-top:100px">update client</button>
-          <button type="button"class="btn btn-secondary"style="margin-top:100px"(click)="onCancel()">Cancel</button>
+          <button  mat-flat-button color="primary" type="submit"style="margin-left:40px;margin-right:50px;margin-top:100px">update client</button>
+          <button  mat-flat-button style="background-color:#b3b0b5;margin-top:100px;" type="button"(click)="onCancel()">Cancel</button>
 
-            </div>
+           </div>
     </form>
 
