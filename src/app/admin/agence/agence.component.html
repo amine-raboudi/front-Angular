@@ -63,7 +63,7 @@
             <!-- Weight Column -->
             <ng-container matColumnDef="password">
               <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Password </th>
-              <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.password }}</td>
+              <td mat-cell *matCellDef="let data"  style="text-align:center;color:#6e100b"><b>Attented</b></td>
 
             </ng-container>
           
@@ -101,7 +101,7 @@
                       <!-- create the dropdown menu -->
                       <mat-menu #menu="matMenu">
                         <button mat-menu-item (click)="Accept(data.email,data,data.id)">  Accept</button>
-                        <button mat-menu-item (click)= "Deny(data,data.id)">Deny</button>
+                        <button mat-menu-item (click)= "Deny(data.email,data,data.id)">Deny</button>
                       </mat-menu>
                     
                   </div>
@@ -164,7 +164,7 @@
                           <!-- create the dropdown menu -->
                           <mat-menu #menu="matMenu">
                             <button mat-menu-item (click)="Accept(i.email,i,i.id)">  Accept</button>
-                            <button mat-menu-item (click)= "Deny(i,i.id)">Deny</button>
+                            <button mat-menu-item (click)= "Deny(i.email,i,i.id)">Deny</button>
                           </mat-menu>
                         
                       </div>

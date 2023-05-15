@@ -152,7 +152,7 @@ deleteUser(id: number) {
   
 Accept(email:any,data:any,id:any) {
  
-  this.emailService.sendEmail(email, 'tst', 'HI')
+  this.emailService.sendAg(email, 'tst', 'HI')
   .subscribe(() => {
       console.log('ok'); // success response from Symfony 5 API
   });
@@ -162,9 +162,11 @@ Accept(email:any,data:any,id:any) {
   
 }
 
-Deny(data:any,id:any) {
- 
-  
+Deny(email:any,data:any,id:any) {
+  this.emailService.Deny(id,email, 'tst', 'HI')
+  .subscribe(() => {
+      console.log('ok'); 
+    });
   data.status="Denied"  ;
   this.agenceService.updateUser(id, data).subscribe();
 

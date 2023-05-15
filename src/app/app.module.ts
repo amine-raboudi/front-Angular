@@ -1,6 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { MatBadgeModule } from '@angular/material/badge';
 import { CommonModule } from '@angular/common'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,6 +35,11 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import {MatCardModule} from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import {MatRadioModule} from '@angular/material/radio';
+import { AdminsComponent } from './admin/admins/admins.component';
+import { ShowAdminsComponent } from './admin/admins/show-admins/show-admins.component';
+import { EditAdminsComponent } from './admin/admins/edit-admins/edit-admins.component';
+import { NewAdminComponent } from './admin/new-admin/new-admin.component';
+import { AddComponent } from './admin/new-admin/add/add.component';
 
 
 const routes: Routes = [
@@ -44,6 +50,7 @@ const routes: Routes = [
 @NgModule({
 
   imports: [
+    MatBadgeModule,
     MatRadioModule,
     MatGridListModule,
     MatCardModule,
@@ -86,6 +93,12 @@ const routes: Routes = [
      EditAgenceComponent,
      ShowAgenceComponent,
      DashboardComponent,
+     AdminsComponent,
+     ShowAdminsComponent,
+     EditAdminsComponent,
+     NewAdminComponent,
+     AddComponent,
+    
     
     
   ],
