@@ -40,6 +40,7 @@ import { ShowAdminsComponent } from './admin/admins/show-admins/show-admins.comp
 import { EditAdminsComponent } from './admin/admins/edit-admins/edit-admins.component';
 import { NewAdminComponent } from './admin/new-admin/new-admin.component';
 import { AddComponent } from './admin/new-admin/add/add.component';
+import { OfferComponent } from './admin/offer/offer.component';
 
 
 const routes: Routes = [
@@ -98,6 +99,7 @@ const routes: Routes = [
      EditAdminsComponent,
      NewAdminComponent,
      AddComponent,
+     OfferComponent,
     
     
     

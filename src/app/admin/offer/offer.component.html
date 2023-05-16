@@ -1,0 +1,611 @@
+<div class="col-sm-8">
+    <div >
+  
+        
+         <div class="container">
+       
+          <div class="row">
+            <div class="col-sm-8">
+              
+              <form >
+                <div class="input-group mb-3"style="margin-top:40px;margin-left:30px;   width: 800px;">
+                <mat-form-field class="input-group mb-3">
+                  <input  class="form-control" matInput placeholder="Search"id="id" name="id"   >
+                  <button class="btn btn-outline-secondary"type="submit">Search</button>
+                </mat-form-field>
+              </div>
+               
+              </form>
+                          
+
+            </div>
+
+            <div class="col-sm-3">
+                <section>
+                  <div class="example-button-row">
+                    <div class="example-flex-container">
+                      <div class="example-button-container">
+                        <button  style="margin-top:40px;margin-left:450px;margin-bottom:20px;background-color:#00994C;" mat-fab  aria-label="Example icon button with a delete icon">
+                          <mat-icon >add</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+            </div>
+
+        </div>
+        <div style="color:black;margin-left:250px;text-align:center;border-radius: 10px;">
+            <button    style="margin-left:5px;margin-top:5px;margin-bottom:5px;background-color: #2f3030;" mat-flat-button color="white"  aria-label="Example icon button with a home icon">
+                <mat-icon   (click)="Click(1)"> format_list_bulleted</mat-icon>
+            </button>
+            <button    style="margin-left:5px;margin-top:5px;margin-bottom:5px;background-color: #2f3030;" mat-flat-button color="white"  aria-label="Example icon button with a home icon">
+                <mat-icon   (click)="Click(2)"> local_hotel</mat-icon>
+            </button>
+            <button    style="margin-left:5px;margin-top:5px;margin-bottom:5px;background-color: #2f3030;" mat-flat-button color="white"  aria-label="Example icon button with a home icon">
+                <mat-icon   (click)="Click(3)"> card_travel</mat-icon>
+            </button>
+            <button    style="margin-left:5px;margin-top:5px;margin-bottom:5px;background-color: #2f3030;" mat-flat-button color="white"  aria-label="Example icon button with a home icon">
+                <mat-icon   (click)="Click(4)"> mosque</mat-icon>
+            </button>
+            <button    style="margin-left:5px;margin-top:5px;margin-bottom:5px;background-color: #2f3030;" mat-flat-button color="white"  aria-label="Example icon button with a home icon">
+                <mat-icon   (click)="Click(5)"> directions_car</mat-icon>
+            </button>
+            <button    style="margin-left:5px;margin-top:5px;margin-bottom:5px;background-color: #2f3030;" mat-flat-button color="white"  aria-label="Example icon button with a home icon">
+                <mat-icon   (click)="Click(6)"> restaurant_menu</mat-icon>
+            </button>
+            <hr style="color: #2f3030;"  >
+            </div>
+         
+            <div  *ngIf="clickAll">
+                <table mat-table [dataSource]="dataSource" style="margin-top:20px;margin-left:30px;margin-bottom:20px;">
+    
+                    <!--- Note that these columns can be defined in any order.
+                          The actual rendered columns are set as a property on the row definition" -->
+                  
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="id">
+                      <th mat-header-cell *matHeaderCellDef style="text-align:center;"> ID </th>
+                      <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.id }}</td>
+        
+                    </ng-container>
+                    <ng-container matColumnDef="Price">
+                        <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Price </th>
+                        <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.Price }}</td>
+          
+                      </ng-container>
+                      <ng-container matColumnDef="DateStart">
+                        <th mat-header-cell *matHeaderCellDef style="text-align:center;"> DateStart </th>
+                        <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.DateStart.date  | slice:0:10 }}</td>
+          
+                      </ng-container>
+                      <ng-container matColumnDef="DateEnd">
+                        <th mat-header-cell *matHeaderCellDef style="text-align:center;"> DateEnd </th>
+                        <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.DateEnd.date | slice:0:10 }}</td>
+          
+                      </ng-container>
+                      <ng-container matColumnDef="Category">
+                        <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Category </th>
+                        <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.Category }}</td>
+          
+                      </ng-container>
+                      <ng-container matColumnDef="Active">
+                        <th mat-header-cell *matHeaderCellDef style="text-align:center;"> IsActive </th>
+                        <td mat-cell *matCellDef="let data" style="text-align:center;">
+                            <div  *ngIf="data.Active">
+                                <mat-icon style="color:#135209;"  >check</mat-icon>
+                            </div>
+                            <div  *ngIf="!data.Active">
+                              <mat-icon style="color:#b5282d;">close</mat-icon>
+                            </div>
+                        </td>
+          
+                      </ng-container>
+                      <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Actions </th>
+                  <td mat-cell *matCellDef="let data" style="text-align:center;">
+                    
+                        <div ngbDropdown>
+                          <button mat-button [matMenuTriggerFor]="menu"style="background-color:#6666FF">
+                            <mat-icon>settings</mat-icon>
+                            <mat-icon>arrow_drop_down</mat-icon>
+                          </button>
+                          
+                          <!-- create the dropdown menu -->
+                          <mat-menu #menu="matMenu">
+                            <button mat-menu-item (click)="Active(data,data.id)">  Active</button>
+                            <button mat-menu-item (click)="Active(data,data.id)">Stop</button>
+                          </mat-menu>
+                        
+                      
+                    </div>
+                  </td>
+          
+                      </ng-container>
+                      <ng-container matColumnDef="edit">
+                        <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Edit </th>
+                        <td mat-cell *matCellDef="let data" style="text-align:center;">
+                          
+                         
+                                  <button style="margin-left:5px;background-color:#FF6666;" mat-fab  aria-label="Example icon button with a delete icon">
+                                    <mat-icon>delete</mat-icon>
+                                  </button>
+                                  <button  style="margin-left:5px;background-color: #00FFFF;" mat-fab   aria-label="Example icon button with a bookmark icon">
+                                    <mat-icon >edit</mat-icon>
+                                  </button>
+                                  <button    style="margin-left:5px;background-color: #A0A0A0;" mat-fab color="white"  aria-label="Example icon button with a home icon">
+                                    <mat-icon svgIcon="my-icon"></mat-icon>
+                                  </button>
+                               
+                                 
+                                
+                        </td>
+                      </ng-container>
+                  
+                   
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let user; columns: displayedColumns;"></tr>
+                  </table>
+                </div>
+               
+                <div  *ngIf="clickH"    >
+                    
+                    <table mat-table [dataSource]="dataSource1" style="margin-top:20px;margin-left:30px;">
+    
+                        <!--- Note that these columns can be defined in any order.
+                              The actual rendered columns are set as a property on the row definition" -->
+                      
+                        <!-- Position Column -->
+                        <ng-container matColumnDef="id">
+                          <th mat-header-cell *matHeaderCellDef style="text-align:center;"> ID </th>
+                          <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.id }}</td>
+            
+                        </ng-container>
+                        <ng-container matColumnDef="Price">
+                            <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Price </th>
+                            <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.Price }}</td>
+              
+                          </ng-container>
+                          <ng-container matColumnDef="DateStart">
+                            <th mat-header-cell *matHeaderCellDef style="text-align:center;"> DateStart </th>
+                            <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.DateStart.date  | slice:0:10 }}</td>
+              
+                          </ng-container>
+                          <ng-container matColumnDef="DateEnd">
+                            <th mat-header-cell *matHeaderCellDef style="text-align:center;"> DateEnd </th>
+                            <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.DateEnd.date | slice:0:10 }}</td>
+              
+                          </ng-container>
+                          <ng-container matColumnDef="Category">
+                            <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Category </th>
+                            <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.Category }}</td>
+              
+                          </ng-container>
+                          <ng-container matColumnDef="Active">
+                            <th mat-header-cell *matHeaderCellDef style="text-align:center;"> IsActive </th>
+                            <td mat-cell *matCellDef="let data" style="text-align:center;">
+                                <div  *ngIf="data.Active">
+                                    <mat-icon style="color:#135209;"  >check</mat-icon>
+                                </div>
+                                <div  *ngIf="!data.Active">
+                                  <mat-icon style="color:#b5282d;">close</mat-icon>
+                                </div>
+                            </td>
+              
+                          </ng-container>
+                          <ng-container matColumnDef="action">
+                            <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Actions </th>
+                      <td mat-cell *matCellDef="let data" style="text-align:center;">
+                        
+                            <div ngbDropdown>
+                              <button mat-button [matMenuTriggerFor]="menu"style="background-color:#6666FF">
+                                <mat-icon>settings</mat-icon>
+                                <mat-icon>arrow_drop_down</mat-icon>
+                              </button>
+                              
+                              <!-- create the dropdown menu -->
+                              <mat-menu #menu="matMenu">
+                                <button mat-menu-item (click)="Active(data,data.id)">  Active</button>
+                                <button mat-menu-item (click)="Active(data,data.id)">Stop</button>
+                              </mat-menu>
+                            
+                          
+                        </div>
+                      </td>
+              
+                          </ng-container>
+                          <ng-container matColumnDef="edit">
+                            <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Edit </th>
+                            <td mat-cell *matCellDef="let data" style="text-align:center;">
+                              
+                             
+                                      <button style="margin-left:5px;background-color:#FF6666;" mat-fab  aria-label="Example icon button with a delete icon">
+                                        <mat-icon>delete</mat-icon>
+                                      </button>
+                                      <button  style="margin-left:5px;background-color: #00FFFF;" mat-fab   aria-label="Example icon button with a bookmark icon">
+                                        <mat-icon >edit</mat-icon>
+                                      </button>
+                                      <button    style="margin-left:5px;background-color: #A0A0A0;" mat-fab color="white"  aria-label="Example icon button with a home icon">
+                                        <mat-icon svgIcon="my-icon"></mat-icon>
+                                      </button>
+                                   
+                                     
+                                    
+                            </td>
+                          </ng-container>
+                      
+                       
+                      
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let user; columns: displayedColumns;"></tr>
+                      </table>
+                    </div>
+                    <div  *ngIf="clickV"    >
+                    
+                        <table mat-table [dataSource]="dataSource2" style="margin-top:20px;margin-left:30px;">
+        
+                            <!--- Note that these columns can be defined in any order.
+                                  The actual rendered columns are set as a property on the row definition" -->
+                          
+                            <!-- Position Column -->
+                            <ng-container matColumnDef="id">
+                              <th mat-header-cell *matHeaderCellDef style="text-align:center;"> ID </th>
+                              <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.id }}</td>
+                
+                            </ng-container>
+                            <ng-container matColumnDef="Price">
+                                <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Price </th>
+                                <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.Price }}</td>
+                  
+                              </ng-container>
+                              <ng-container matColumnDef="DateStart">
+                                <th mat-header-cell *matHeaderCellDef style="text-align:center;"> DateStart </th>
+                                <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.DateStart.date  | slice:0:10 }}</td>
+                  
+                              </ng-container>
+                              <ng-container matColumnDef="DateEnd">
+                                <th mat-header-cell *matHeaderCellDef style="text-align:center;"> DateEnd </th>
+                                <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.DateEnd.date | slice:0:10 }}</td>
+                  
+                              </ng-container>
+                              <ng-container matColumnDef="Category">
+                                <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Category </th>
+                                <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.Category }}</td>
+                  
+                              </ng-container>
+                              <ng-container matColumnDef="Active">
+                                <th mat-header-cell *matHeaderCellDef style="text-align:center;"> IsActive </th>
+                                <td mat-cell *matCellDef="let data" style="text-align:center;">
+                                    <div  *ngIf="data.Active">
+                                        <mat-icon style="color:#135209;"  >check</mat-icon>
+                                    </div>
+                                    <div  *ngIf="!data.Active">
+                                      <mat-icon style="color:#b5282d;">close</mat-icon>
+                                    </div>
+                                </td>
+                  
+                              </ng-container>
+                              <ng-container matColumnDef="action">
+                                <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Actions </th>
+                          <td mat-cell *matCellDef="let data" style="text-align:center;">
+                            
+                                <div ngbDropdown>
+                                  <button mat-button [matMenuTriggerFor]="menu"style="background-color:#6666FF">
+                                    <mat-icon>settings</mat-icon>
+                                    <mat-icon>arrow_drop_down</mat-icon>
+                                  </button>
+                                  
+                                  <!-- create the dropdown menu -->
+                                  <mat-menu #menu="matMenu">
+                                    <button mat-menu-item (click)="Active(data,data.id)">  Active</button>
+                                    <button mat-menu-item (click)="Active(data,data.id)">Stop</button>
+                                  </mat-menu>
+                                
+                              
+                            </div>
+                          </td>
+                  
+                              </ng-container>
+                              <ng-container matColumnDef="edit">
+                                <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Edit </th>
+                                <td mat-cell *matCellDef="let data" style="text-align:center;">
+                                  
+                                 
+                                          <button style="margin-left:5px;background-color:#FF6666;" mat-fab  aria-label="Example icon button with a delete icon">
+                                            <mat-icon>delete</mat-icon>
+                                          </button>
+                                          <button  style="margin-left:5px;background-color: #00FFFF;" mat-fab   aria-label="Example icon button with a bookmark icon">
+                                            <mat-icon >edit</mat-icon>
+                                          </button>
+                                          <button    style="margin-left:5px;background-color: #A0A0A0;" mat-fab color="white"  aria-label="Example icon button with a home icon">
+                                            <mat-icon svgIcon="my-icon"></mat-icon>
+                                          </button>
+                                       
+                                         
+                                        
+                                </td>
+                              </ng-container>
+                          
+                           
+                          
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let user; columns: displayedColumns;"></tr>
+                          </table>
+                        </div>
+                        <div  *ngIf="clickO"    >
+                    
+                            <table mat-table [dataSource]="dataSource3" style="margin-top:20px;margin-left:30px;">
+            
+                                <!--- Note that these columns can be defined in any order.
+                                      The actual rendered columns are set as a property on the row definition" -->
+                              
+                                <!-- Position Column -->
+                                <ng-container matColumnDef="id">
+                                  <th mat-header-cell *matHeaderCellDef style="text-align:center;"> ID </th>
+                                  <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.id }}</td>
+                    
+                                </ng-container>
+                                <ng-container matColumnDef="Price">
+                                    <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Price </th>
+                                    <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.Price }}</td>
+                      
+                                  </ng-container>
+                                  <ng-container matColumnDef="DateStart">
+                                    <th mat-header-cell *matHeaderCellDef style="text-align:center;"> DateStart </th>
+                                    <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.DateStart.date  | slice:0:10 }}</td>
+                      
+                                  </ng-container>
+                                  <ng-container matColumnDef="DateEnd">
+                                    <th mat-header-cell *matHeaderCellDef style="text-align:center;"> DateEnd </th>
+                                    <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.DateEnd.date | slice:0:10 }}</td>
+                      
+                                  </ng-container>
+                                  <ng-container matColumnDef="Category">
+                                    <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Category </th>
+                                    <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.Category }}</td>
+                      
+                                  </ng-container>
+                                  <ng-container matColumnDef="Active">
+                                    <th mat-header-cell *matHeaderCellDef style="text-align:center;"> IsActive </th>
+                                    <td mat-cell *matCellDef="let data" style="text-align:center;"> 
+                                        <div  *ngIf="data.Active">
+                                        <mat-icon style="color:#135209;"  >check</mat-icon>
+                                    </div>
+                                    <div  *ngIf="!data.Active">
+                                      <mat-icon style="color:#b5282d;">close</mat-icon>
+                                    </div></td>
+                      
+                                  </ng-container>
+                                  <ng-container matColumnDef="action">
+                                    <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Actions </th>
+                              <td mat-cell *matCellDef="let data" style="text-align:center;">
+                                
+                                    <div ngbDropdown>
+                                      <button mat-button [matMenuTriggerFor]="menu"style="background-color:#6666FF">
+                                        <mat-icon>settings</mat-icon>
+                                        <mat-icon>arrow_drop_down</mat-icon>
+                                      </button>
+                                      
+                                      <!-- create the dropdown menu -->
+                                      <mat-menu #menu="matMenu">
+                                        <button mat-menu-item (click)="Active(data,data.id)">  Active</button>
+                                        <button mat-menu-item (click)="Active(data,data.id)">Stop</button>
+                                      </mat-menu>
+                                    
+                                  
+                                </div>
+                              </td>
+                      
+                                  </ng-container>
+                                  <ng-container matColumnDef="edit">
+                                    <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Edit </th>
+                                    <td mat-cell *matCellDef="let data" style="text-align:center;">
+                                      
+                                     
+                                              <button style="margin-left:5px;background-color:#FF6666;" mat-fab  aria-label="Example icon button with a delete icon">
+                                                <mat-icon>delete</mat-icon>
+                                              </button>
+                                              <button  style="margin-left:5px;background-color: #00FFFF;" mat-fab   aria-label="Example icon button with a bookmark icon">
+                                                <mat-icon >edit</mat-icon>
+                                              </button>
+                                              <button    style="margin-left:5px;background-color: #A0A0A0;" mat-fab color="white"  aria-label="Example icon button with a home icon">
+                                                <mat-icon svgIcon="my-icon"></mat-icon>
+                                              </button>
+                                           
+                                             
+                                            
+                                    </td>
+                                  </ng-container>
+                              
+                               
+                              
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let user; columns: displayedColumns;"></tr>
+                              </table>
+                            </div>
+                            <div  *ngIf="clickVo"    >
+                    
+                                <table mat-table [dataSource]="dataSource4" style="margin-top:20px;margin-left:30px;">
+                
+                                    <!--- Note that these columns can be defined in any order.
+                                          The actual rendered columns are set as a property on the row definition" -->
+                                  
+                                    <!-- Position Column -->
+                                    <ng-container matColumnDef="id">
+                                      <th mat-header-cell *matHeaderCellDef style="text-align:center;"> ID </th>
+                                      <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.id }}</td>
+                        
+                                    </ng-container>
+                                    <ng-container matColumnDef="Price">
+                                        <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Price </th>
+                                        <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.Price }}</td>
+                          
+                                      </ng-container>
+                                      <ng-container matColumnDef="DateStart">
+                                        <th mat-header-cell *matHeaderCellDef style="text-align:center;"> DateStart </th>
+                                        <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.DateStart.date  | slice:0:10 }}</td>
+                          
+                                      </ng-container>
+                                      <ng-container matColumnDef="DateEnd">
+                                        <th mat-header-cell *matHeaderCellDef style="text-align:center;"> DateEnd </th>
+                                        <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.DateEnd.date | slice:0:10 }}</td>
+                          
+                                      </ng-container>
+                                      <ng-container matColumnDef="Category">
+                                        <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Category </th>
+                                        <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.Category }}</td>
+                          
+                                      </ng-container>
+                                      <ng-container matColumnDef="Active">
+                                        <th mat-header-cell *matHeaderCellDef style="text-align:center;"> IsActive </th>
+                                        <td mat-cell *matCellDef="let data" style="text-align:center;">
+                                            <div  *ngIf="data.Active">
+                                                <mat-icon style="color:#135209;"  >check</mat-icon>
+                                            </div>
+                                            <div  *ngIf="!data.Active">
+                                              <mat-icon style="color:#b5282d;">close</mat-icon>
+                                            </div>
+                                        </td>
+                          
+                                      </ng-container>
+                                      <ng-container matColumnDef="action">
+                                        <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Actions </th>
+                                  <td mat-cell *matCellDef="let data" style="text-align:center;">
+                                    
+                                        <div ngbDropdown>
+                                          <button mat-button [matMenuTriggerFor]="menu"style="background-color:#6666FF">
+                                            <mat-icon>settings</mat-icon>
+                                            <mat-icon>arrow_drop_down</mat-icon>
+                                          </button>
+                                          
+                                          <!-- create the dropdown menu -->
+                                          <mat-menu #menu="matMenu">
+                                            <button mat-menu-item (click)="Active(data,data.id)">  Active</button>
+                                            <button mat-menu-item (click)="Active(data,data.id)">Stop</button>
+                                          </mat-menu>
+                                        
+                                      
+                                    </div>
+                                  </td>
+                          
+                                      </ng-container>
+                                      <ng-container matColumnDef="edit">
+                                        <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Edit </th>
+                                        <td mat-cell *matCellDef="let data" style="text-align:center;">
+                                          
+                                         
+                                                  <button style="margin-left:5px;background-color:#FF6666;" mat-fab  aria-label="Example icon button with a delete icon">
+                                                    <mat-icon>delete</mat-icon>
+                                                  </button>
+                                                  <button  style="margin-left:5px;background-color: #00FFFF;" mat-fab   aria-label="Example icon button with a bookmark icon">
+                                                    <mat-icon >edit</mat-icon>
+                                                  </button>
+                                                  <button    style="margin-left:5px;background-color: #A0A0A0;" mat-fab color="white"  aria-label="Example icon button with a home icon">
+                                                    <mat-icon svgIcon="my-icon"></mat-icon>
+                                                  </button>
+                                               
+                                                 
+                                                
+                                        </td>
+                                      </ng-container>
+                                  
+                                   
+                                  
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let user; columns: displayedColumns;"></tr>
+                                  </table>
+                                </div>
+                                <div  *ngIf="clickR"    >
+                    
+                                    <table mat-table [dataSource]="dataSource5" style="margin-top:20px;margin-left:30px;">
+                    
+                                        <!--- Note that these columns can be defined in any order.
+                                              The actual rendered columns are set as a property on the row definition" -->
+                                      
+                                        <!-- Position Column -->
+                                        <ng-container matColumnDef="id">
+                                          <th mat-header-cell *matHeaderCellDef style="text-align:center;"> ID </th>
+                                          <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.id }}</td>
+                            
+                                        </ng-container>
+                                        <ng-container matColumnDef="Price">
+                                            <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Price </th>
+                                            <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.Price }}</td>
+                              
+                                          </ng-container>
+                                          <ng-container matColumnDef="DateStart">
+                                            <th mat-header-cell *matHeaderCellDef style="text-align:center;"> DateStart </th>
+                                            <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.DateStart.date  | slice:0:10 }}</td>
+                              
+                                          </ng-container>
+                                          <ng-container matColumnDef="DateEnd">
+                                            <th mat-header-cell *matHeaderCellDef style="text-align:center;"> DateEnd </th>
+                                            <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.DateEnd.date | slice:0:10 }}</td>
+                              
+                                          </ng-container>
+                                          <ng-container matColumnDef="Category">
+                                            <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Category </th>
+                                            <td mat-cell *matCellDef="let data" style="text-align:center;">{{ data.Category }}</td>
+                              
+                                          </ng-container>
+                                          <ng-container matColumnDef="Active">
+                                            <th mat-header-cell *matHeaderCellDef style="text-align:center;"> IsActive </th>
+                                            <td mat-cell *matCellDef="let data" style="text-align:center;">
+                                                <div  *ngIf="data.Active">
+                                                    <mat-icon style="color:#135209;"  >check</mat-icon>
+                                                </div>
+                                                <div  *ngIf="!data.Active">
+                                                  <mat-icon style="color:#b5282d;">close</mat-icon>
+                                                </div>
+                                            </td>
+                              
+                                          </ng-container>
+                                          <ng-container matColumnDef="action">
+                                            <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Actions </th>
+                                      <td mat-cell *matCellDef="let data" style="text-align:center;">
+                                        
+                                            <div ngbDropdown>
+                                              <button mat-button [matMenuTriggerFor]="menu"style="background-color:#6666FF">
+                                                <mat-icon>settings</mat-icon>
+                                                <mat-icon>arrow_drop_down</mat-icon>
+                                              </button>
+                                              
+                                              <!-- create the dropdown menu -->
+                                              <mat-menu #menu="matMenu">
+                                                <button mat-menu-item (click)="Active(data,data.id)">  Active</button>
+                                                <button mat-menu-item (click)="Active(data,data.id)">Stop</button>
+                                              </mat-menu>
+                                            
+                                          
+                                        </div>
+                                      </td>
+                              
+                                          </ng-container>
+                                          <ng-container matColumnDef="edit">
+                                            <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Edit </th>
+                                            <td mat-cell *matCellDef="let data" style="text-align:center;">
+                                              
+                                             
+                                                      <button style="margin-left:5px;background-color:#FF6666;" mat-fab  aria-label="Example icon button with a delete icon">
+                                                        <mat-icon>delete</mat-icon>
+                                                      </button>
+                                                      <button  style="margin-left:5px;background-color: #00FFFF;" mat-fab   aria-label="Example icon button with a bookmark icon">
+                                                        <mat-icon >edit</mat-icon>
+                                                      </button>
+                                                      <button    style="margin-left:5px;background-color: #A0A0A0;" mat-fab color="white"  aria-label="Example icon button with a home icon">
+                                                        <mat-icon svgIcon="my-icon"></mat-icon>
+                                                      </button>
+                                                   
+                                                     
+                                                    
+                                            </td>
+                                          </ng-container>
+                                      
+                                       
+                                      
+                                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                        <tr mat-row *matRowDef="let user; columns: displayedColumns;"></tr>
+                                      </table>
+                                    </div>
