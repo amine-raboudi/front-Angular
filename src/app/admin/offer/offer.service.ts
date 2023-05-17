@@ -21,7 +21,7 @@ export class OfferService {
   }
 
   updateOffer(id: number, user: any) {
-    return this.http.put('http://127.0.0.1:8000/offer//update/'+id, user);
+    return this.http.put('http://127.0.0.1:8000/offer/update/'+id, user);
     
 
   }

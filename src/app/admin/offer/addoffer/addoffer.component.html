@@ -1,0 +1,48 @@
+
+<h1 mat-dialog-titles style="text-align:center;color:#d8b9ed;">Add Offer</h1>
+<hr>
+
+<form (ngSubmit)="PostOffer()">
+       
+  <input type="number" class="form-control" placeholder="Enter an number" id="price" name="price" [(ngModel)]="price"><br>
+  <input type="date" id="dateStart" name="dateStart" class="form-control" [(ngModel)]="dateStart"><br>
+  <input type="date" id="dateEnd" name="dateEnd" class="form-control" [(ngModel)]="dateEnd"><br>
+
+  <br>
+        Type Offer:
+          <select class="form-select" id="category" name="category"  [(ngModel)]="category" >
+              <option  value="1" selected >Hotel</option>
+              <option value="2" >Voyage</option>
+              <option value="3" >Omra</option>
+              <option value="4" >Voiture</option>
+              <option value="5">  Restaurant</option>
+          </select>
+    <br>
+    <label>
+      <div class="form-check form-check-inline">
+      <p class="lead">
+        Active
+      </p>
+    </div>
+      
+      <div class="form-check form-check-inline">
+      <input class="form-check-input"type="radio" id="NO" name="NO"  value="NO"  disabled  >
+      <label for="NO"class="form-check-label">NO</label>
+      <br>
+      <input class="form-check-input"type="radio" id="YES" name="YES" value="YES" disabled>
+      <label for="YES"class="form-check-label">YES </label>
+      <br> 
+      
+      
+      </div> 
+  
+</label><br>
+
+    <div class="position-absolute top-5000 start-50 translate-middle">
+   <button mat-flat-button color="primary" type="submit"style="margin-left:40px;margin-right:50px;margin-top:100px">Add Offer</button>
+  
+   <button mat-flat-button  style="background-color:#b3b0b5;margin-top:100px;" type="button"(click)="onCancel()">Cancel</button>
+    </div>
+
+</form>
+

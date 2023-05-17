@@ -6,8 +6,12 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { AgenceService } from '../agence/agence.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { OfferService } from './offer.service';
+import { AddofferComponent } from './addoffer/addoffer.component';
+import { ShowofferComponent } from './showoffer/showoffer.component';
+import Swal from 'sweetalert2';
+import { EditofferComponent } from './editoffer/editoffer.component';
 
 
 export interface Offer {
@@ -39,6 +43,10 @@ export class OfferComponent {
   l=0;
   m=0;
   n=0;
+  data: any;
+  id:any;
+  users: any;
+
   
 
   constructor(private http: HttpClient,
@@ -69,7 +77,6 @@ export class OfferComponent {
   ngOnInit() {
     this.http.get<Offer[]>('http://127.0.0.1:8000/offer').subscribe(data => {
       this.dataSource.data = data;
-      console.log(  this.dataSource.data);
       for(let i = 0; i < data.length; i++){
         if(data[i].Category=='hotel'){
           this.dataSource1.data[this.j] = data[i];
@@ -156,6 +163,7 @@ export class OfferComponent {
  
     
     data.Active=true  ;
+    console.log(data);
     this.OfferService.updateOffer(id, data).subscribe();
   
     
@@ -168,5 +176,85 @@ export class OfferComponent {
   
     
   }
+
+  openSnackBar(message: string, action: any) {
+      
+    this._snackBar.open(message, action, {
+      duration: 2000,
+      panelClass: 'blue-snackbar'
+    });
+  }
+
+  openAddUserDialog():void {
+    const dialogConfig: MatDialogConfig = {
+      panelClass: 'dialog-background',
+    };
+    const dialogRef = this.dialog.open(AddofferComponent,{
+     
+      width : '800px',
+      height : '500px',
+      panelClass : 'my-dialog-class'
+    });
+
+}
+
+
+SearchID() {
+  this.OfferService.getOfferById(this.id).subscribe(data => {
+    this.data = data;
+  });
+}
+
+openShowUserDialog(id:any ):void {
+  
+  const clientID  =this.OfferService.getOfferById(id).subscribe((data: any) => {
+    this.users = this.data;
+    const dialogRef = this.dialog.open(ShowofferComponent,{
+      data:data,
+      width : '800px',
+      height : '500px',
+      panelClass : 'my-dialog-class'
+    });
+    dialogRef.afterClosed().subscribe()
+
+  });
+ 
+} 
+
+openEditUserDialog(id:any):void {
+ 
+  
+  const clientID  =this.OfferService.getOfferById(id).subscribe((data: any) => {
+    this.data = data;
+    const dialogRef = this.dialog.open(EditofferComponent,{
+      data:data[0],
+      width : '800px',
+      height : '500px',
+      panelClass : 'my-dialog-class'
+    });
+    dialogRef.afterClosed().subscribe()
+  });
+
+ 
+} 
+deleteOffer(id: number) {
+  Swal.fire({
+    icon: 'question',
+    title: 'Deleting',
+    text: 'Are you sure to delete this Offer ?',
+    confirmButtonText: 'Delete',
+    cancelButtonText:'Cancel',
+    showCancelButton: true,
+
+  }).then((result) => {
+    if (result.isConfirmed) {this.OfferService.deleteOffer(id).subscribe(
+      response => console.log('Offer deleted successfully.'),
+      error => console.error('Error deleting user:', error));
+  
+      this.openSnackBar('Offer deleted','OK');
+   
+}});
+  }
+
 
 }

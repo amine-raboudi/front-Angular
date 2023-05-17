@@ -86,7 +86,6 @@ export class AgenceComponent {
 SearchID() {
   this.agenceService.getUserById(this.id).subscribe(data => {
     this.data = data;
-    console.log(data);
   });
 }
 
@@ -94,7 +93,6 @@ openShowUserDialog(id:any ):void {
   
   const clientID  =this.agenceService.getUserById(id).subscribe((data: any) => {
     this.users = this.data;
-    console.log(data)
     const dialogRef = this.dialog.open(ShowAgenceComponent,{
       data:data,
       width : '800px',
@@ -118,7 +116,6 @@ openEditUserDialog(data:any,id:any):void {
       height : '500px',
       panelClass : 'my-dialog-class'
     });
-    console.log(data[0]);
     dialogRef.afterClosed().subscribe()
   });
 
@@ -146,7 +143,6 @@ deleteUser(id: number) {
   ngOnInit() {
     this.http.get<User[]>('http://127.0.0.1:8000/agenceAll').subscribe(data => {
       this.dataSource.data = data;
-      console.log( this.dataSource.data)
     });
   }
   
@@ -154,7 +150,6 @@ Accept(email:any,data:any,id:any) {
  
   this.emailService.sendAg(email, 'tst', 'HI')
   .subscribe(() => {
-      console.log('ok'); // success response from Symfony 5 API
   });
   data.status="Accepted"  ;
   this.agenceService.updateUser(id, data).subscribe();
@@ -165,7 +160,6 @@ Accept(email:any,data:any,id:any) {
 Deny(email:any,data:any,id:any) {
   this.emailService.Deny(id,email, 'tst', 'HI')
   .subscribe(() => {
-      console.log('ok'); 
     });
   data.status="Denied"  ;
   this.agenceService.updateUser(id, data).subscribe();

@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { NgbDropdownModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CrudAgService } from './crud-ag.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -41,6 +40,9 @@ import { EditAdminsComponent } from './admin/admins/edit-admins/edit-admins.comp
 import { NewAdminComponent } from './admin/new-admin/new-admin.component';
 import { AddComponent } from './admin/new-admin/add/add.component';
 import { OfferComponent } from './admin/offer/offer.component';
+import { AddofferComponent } from './admin/offer/addoffer/addoffer.component';
+import { ShowofferComponent } from './admin/offer/showoffer/showoffer.component';
+import { EditofferComponent } from './admin/offer/editoffer/editoffer.component';
 
 
 const routes: Routes = [
@@ -67,7 +69,6 @@ const routes: Routes = [
     AppRoutingModule,
     NgbModule,
     HttpClientModule, 
-    FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatDialogModule,
@@ -78,7 +79,7 @@ const routes: Routes = [
     MatToolbarModule,
     RouterModule.forRoot(routes),
     ],
-  providers: [CrudAgService],
+  providers: [],
   bootstrap: [AppComponent],
   declarations: [
     ClientComponent,
@@ -100,6 +101,9 @@ const routes: Routes = [
      NewAdminComponent,
      AddComponent,
      OfferComponent,
+     AddofferComponent,
+     ShowofferComponent,
+     EditofferComponent,
     
     
     

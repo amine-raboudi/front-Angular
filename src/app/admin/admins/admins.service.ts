@@ -9,7 +9,7 @@ export class AdminsService {
   constructor(private http: HttpClient) { }
 
   getUsers() {
-    return this.http.get('http://127.0.0.1:8000/agenceAll' );
+    return this.http.get('http://127.0.0.1:8000/adminAll' );
   }
 
   getUserById(id: number) {

@@ -1,18 +1,43 @@
-<mat-grid-list cols="2" rowHeight="2:1">
+
+
+<mat-grid-list cols="3" rowHeight="3:1" style="margin-top:50px;">
     <mat-grid-tile>
         <mat-card   class="custom-card1">
             <mat-card-header>
                 <mat-card-title>All Users</mat-card-title>
               </mat-card-header>
-        <mat-card-content>Simple card</mat-card-content>
+              <mat-card-content style="text-align:center;">
+                <h1><b> {{ countAd+countAg+countCli}} </b> </h1>
+              </mat-card-content>
       </mat-card     >
     </mat-grid-tile>
     <mat-grid-tile>
+      <mat-card   class="custom-card5">
+          <mat-card-header>
+              <mat-card-title>Admins</mat-card-title>
+            </mat-card-header>
+      <mat-card-content style="text-align:center;">
+        <h1><b> {{ countAd }} </b> </h1>
+      </mat-card-content>
+    </mat-card     >
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card   class="custom-card6">
+        <mat-card-header>
+            <mat-card-title>Clients</mat-card-title>
+          </mat-card-header>
+          <mat-card-content style="text-align:center;">
+            <h1><b> {{ countCli }} </b> </h1>
+          </mat-card-content>  </mat-card     >
+</mat-grid-tile>
+    <mat-grid-tile>
         <mat-card    class="custom-card2">
             <mat-card-header>
-                <mat-card-title>CLients</mat-card-title>
+                <mat-card-title>Agencies</mat-card-title>
               </mat-card-header>
-        <mat-card-content>Simple card</mat-card-content>
+              <mat-card-content style="text-align:center;">
+                <h1><b> {{ countAg }} </b> </h1>
+              </mat-card-content>
       </mat-card>
     </mat-grid-tile>
     
@@ -20,17 +45,21 @@
 
         <mat-card    class="custom-card3">
             <mat-card-header>
-                <mat-card-title>Agencies</mat-card-title>
+                <mat-card-title>Offers</mat-card-title>
               </mat-card-header>
-        <mat-card-content>Simple card</mat-card-content>
+              <mat-card-content style="text-align:center;">
+                <h1><b> {{ countOff }} </b> </h1>
+              </mat-card-content>
       </mat-card>
     </mat-grid-tile>
     <mat-grid-tile>
         <mat-card    class="custom-card4">  
             <mat-card-header>
-                <mat-card-title>Offers</mat-card-title>
+                <mat-card-title>Reservations</mat-card-title>
               </mat-card-header>
-        <mat-card-content>Simple card</mat-card-content>
+              <mat-card-content style="text-align:center;">
+                <h1><b> {{ countR }} </b> </h1>
+              </mat-card-content>
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>

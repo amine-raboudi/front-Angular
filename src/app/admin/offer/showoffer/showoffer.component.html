@@ -1,0 +1,103 @@
+<div    class="container">
+    <div *ngFor="let data of data | keyvalue">
+       <h1 mat-dialog-titles  style="color:#d8b9ed;text-align:center">
+          <b>Informations about  the Offer</b>
+       </h1>
+         <hr style="margin-top:70px;">
+         <div  class="row">
+         <div class="col">
+           
+           <div  class="row">
+               <div class="col">
+                 <h1 style="color:#e3544f;text-align:center">
+                    <b> ID:</b> <span  style="color:white"> {{ data.value.id }}</span>
+                 </h1> 
+                 </div>
+             
+                
+             </div>
+           </div>
+       
+           <div class="col">
+           
+           <div  class="row">
+               <div class="col">
+                 <h1 style="color:#e3544f;text-align:center">
+                   <b> Price:</b> <span  style="color:white"> {{ data.value.Price }}</span>
+                 </h1> 
+                 </div>
+             
+                
+             </div>
+             
+           </div>
+       </div>
+       <div  class="row">
+           <div class="col">
+             
+             <div  class="row">
+                 <div class="col">
+                   <h1 style="color:#e3544f;text-align:center">
+                      <b> dateStart:</b>  <span  style="color:white"> {{data.value.DateStart}}</span>
+                   </h1> 
+                   </div>
+               
+                  
+               </div>
+             </div>
+         
+             <div class="col">
+             
+             <div  class="row">
+                 <div class="col">
+                   <h1 style="color:#e3544f;text-align:center">
+                     <b> DateEnd:</b>   <span  style="color:white"> {{ data.value.DateEnd }}</span>
+                   </h1> 
+                   </div>
+               
+                   
+               </div>
+               
+             </div>
+         </div>
+         <div  class="row">
+            <div class="col">
+              
+              <div  class="row">
+                  <div class="col">
+                    <h1 style="color:#e3544f;text-align:center">
+                        <b> Category:</b>  
+                        <span  style="color:white"> {{ data.value.Category }}</span>
+                      </h1>  
+                    </div>
+                
+                   
+                </div>
+              </div>
+          
+              <div class="col">
+              
+              <div  class="row">
+                  <div class="col">
+                    <h1 style="color:#e3544f;text-align:center">
+                        <b> Active:</b> 
+                        <span *ngIf="data.value.Active" style="color:white;"> YES</span>
+                        <span *ngIf="!data.value.Active" style="color:white"> NO</span> 
+                      </h1> 
+                    </div>
+                
+                    
+                </div>
+                
+              </div>
+          </div>
+         
+       </div>
+      
+   </div>
+   <hr>
+   <div class="d-grid gap-2 col-6 mx-auto">
+     <button  mat-flat-button style="background-color:#b3b0b5;margin-top:100px;" type="button"(click)="onCancel()">Cancel</button>
+   </div>
+   
+     
