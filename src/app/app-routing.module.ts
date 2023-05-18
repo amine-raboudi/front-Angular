@@ -7,10 +7,12 @@ import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { AgenceComponent } from './admin/agence/agence.component';
 import { ClientComponent } from './admin/client/client.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   { path: '', component: AppComponent },
-  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent , canActivate: [AuthGuard] },
   { path: 'admin', component: AdminComponent },
 
   { path: 'admin', 
