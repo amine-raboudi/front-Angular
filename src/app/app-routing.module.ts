@@ -8,9 +8,11 @@ import { AdminComponent } from './admin/admin.component';
 import { AgenceComponent } from './admin/agence/agence.component';
 import { ClientComponent } from './admin/client/client.component';
 import { AuthGuard } from './auth.guard';
+import { RegisCliComponent } from './regis-cli/regis-cli.component';
 
 const routes: Routes = [
   { path: '', component: AppComponent },
+  { path: 'register/client', component: RegisCliComponent },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent , canActivate: [AuthGuard] },
   { path: 'admin', component: AdminComponent },

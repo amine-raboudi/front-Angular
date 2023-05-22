@@ -43,6 +43,7 @@ import { OfferComponent } from './admin/offer/offer.component';
 import { AddofferComponent } from './admin/offer/addoffer/addoffer.component';
 import { ShowofferComponent } from './admin/offer/showoffer/showoffer.component';
 import { EditofferComponent } from './admin/offer/editoffer/editoffer.component';
+import { RegisCliComponent } from './regis-cli/regis-cli.component';
 
 
 const routes: Routes = [
@@ -104,7 +105,7 @@ const routes: Routes = [
      AddofferComponent,
      ShowofferComponent,
      EditofferComponent,
-    
+     RegisCliComponent,    
     
     
   ],
