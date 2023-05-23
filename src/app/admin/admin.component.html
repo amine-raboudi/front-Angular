@@ -21,9 +21,9 @@
       
       <!-- create the dropdown menu -->
       <mat-menu #menu="matMenu"  >
-        <button mat-menu-item  > <mat-icon>settings</mat-icon>mohamedamineraboudi@gmail.com</button>
+        <button mat-menu-item  > <mat-icon>settings</mat-icon>{{email}}</button>
         <hr class="hr">
-        <button mat-menu-item  ><mat-icon>logout</mat-icon>Logout</button>
+        <button (click)="logout()" mat-menu-item  ><mat-icon>logout</mat-icon>Logout</button>
       </mat-menu>
     
   </div>  </div>

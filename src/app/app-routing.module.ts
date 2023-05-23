@@ -9,6 +9,9 @@ import { AgenceComponent } from './admin/agence/agence.component';
 import { ClientComponent } from './admin/client/client.component';
 import { AuthGuard } from './auth.guard';
 import { RegisCliComponent } from './regis-cli/regis-cli.component';
+import { AgencyComponent } from './agency/agency.component';
+import { ClientsComponent } from './clients/clients.component';
+
 
 const routes: Routes = [
   { path: '', component: AppComponent },
@@ -16,6 +19,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent , canActivate: [AuthGuard] },
   { path: 'admin', component: AdminComponent },
+  { path: 'client', component: ClientsComponent },
+  { path: 'agency', component: AgencyComponent },
+
 
   { path: 'admin', 
   children: [
