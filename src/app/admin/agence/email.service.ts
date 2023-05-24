@@ -16,12 +16,12 @@ export class EmailService {
     sendAg(recipient: string, subject: string, message: string) {
       const body = { recipient, subject, message };
       console.log(body);
-      return this.http.post('http://localhost:8000/send-ag', body);
+      return this.http.post('http://localhost:8000/send-ag',body);
   }
-  Deny(id:any,recipient: string, subject: string, message: string) {
+  DenyAg(recipient: string, subject: string, message: string) {
     const body = { recipient, subject, message };
     console.log(body);
-    return this.http.delete('http://localhost:8000/deny-ag/'+id);
+    return this.http.post('http://localhost:8000/deny-ag',body);
 }
 
   

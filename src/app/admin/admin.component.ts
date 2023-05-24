@@ -14,6 +14,7 @@ loadAg=false;
 loadAd=false;
 loadNA=false;
 loadOf=false;
+loadR=false;
 
 
 today:any;
@@ -54,6 +55,9 @@ console.log(this.date);
     this.loadAd=false;
     this.loadNA=false;
     this.loadOf=false;
+    this.loadR=false;
+
+    
 
 
     }
@@ -64,6 +68,8 @@ console.log(this.date);
       this.loadAd=false;
       this.loadNA=false;
       this.loadOf=false;
+      this.loadR=false;
+
 
 
 
@@ -75,6 +81,8 @@ console.log(this.date);
         this.loadAd=false;
         this.loadNA=false;
         this.loadOf=false;
+        this.loadR=false;
+
 
 
 
@@ -86,6 +94,8 @@ console.log(this.date);
           this.loadAd=true;
           this.loadNA=false;
           this.loadOf=false;
+          this.loadR=false;
+
 
 
 
@@ -97,6 +107,8 @@ console.log(this.date);
             this.loadAd=false;
             this.loadNA=true;
             this.loadOf=false;
+            this.loadR=false;
+
          }
          if(x==6){
           this.loadDash=false;
@@ -105,7 +117,19 @@ console.log(this.date);
           this.loadAd=false;
           this.loadNA=false;
           this.loadOf=true;
+          this.loadR=false;
+
           }
+          if(x==7){
+            this.loadDash=false;
+            this.loadCl=false;
+            this.loadAg=false;
+            this.loadAd=false;
+            this.loadNA=false;
+            this.loadOf=false;
+            this.loadR=true;
+  
+            }
   }
   
 }

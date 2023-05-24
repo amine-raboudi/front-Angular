@@ -11,14 +11,18 @@ import { AuthGuard } from './auth.guard';
 import { RegisCliComponent } from './regis-cli/regis-cli.component';
 import { AgencyComponent } from './agency/agency.component';
 import { ClientsComponent } from './clients/clients.component';
+import { RegisAgComponent } from './regis-ag/regis-ag.component';
+import { RegisAdComponent } from './regis-ad/regis-ad.component';
 
 
 const routes: Routes = [
   { path: '', component: AppComponent },
   { path: 'register/client', component: RegisCliComponent },
+  { path: 'register/agent', component: RegisAgComponent },
+  { path: 'register/admin', component: RegisAdComponent },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent , canActivate: [AuthGuard] },
-  { path: 'admin', component: AdminComponent },
+  { path: 'admin', component: AdminComponent,canActivate: [AuthGuard] },
   { path: 'client', component: ClientsComponent },
   { path: 'agency', component: AgencyComponent },
 

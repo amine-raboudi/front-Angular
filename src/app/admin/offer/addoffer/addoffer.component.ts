@@ -14,7 +14,7 @@ export class AddofferComponent {
   price: any;
   dateStart:any;
   dateEnd:any;
-  category:string = '1';
+  category:any;
   active:any;
 
   constructor(

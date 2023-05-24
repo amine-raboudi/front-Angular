@@ -38,10 +38,8 @@ export class DashboardComponent {
     this.http.get<any[]>(apiUrl).subscribe(
       (data: any[]) => {
         this.countAd = data.length;
-        console.log('Count:', this.countAd);
-      },
-      (error) => {
-        console.error('Error:', error);
+       
+     
       }
     );
   }
@@ -50,10 +48,7 @@ export class DashboardComponent {
     this.http.get<any[]>(apiUrl).subscribe(
       (data: any[]) => {
         this.countCli = data.length;
-        console.log('Count:', this.countCli);
-      },
-      (error) => {
-        console.error('Error:', error);
+      
       }
     );
   }
@@ -62,10 +57,6 @@ export class DashboardComponent {
     this.http.get<any[]>(apiUrl).subscribe(
       (data: any[]) => {
         this.countAg = data.length;
-        console.log('Count:', this.countAg);
-      },
-      (error) => {
-        console.error('Error:', error);
       }
     );
   }
@@ -74,22 +65,16 @@ export class DashboardComponent {
     this.http.get<any[]>(apiUrl).subscribe(
       (data: any[]) => {
         this.countOff = data.length;
-        console.log('Count:', this.countOff);
-      },
-      (error) => {
-        console.error('Error:', error);
+       
       }
     );
   }
   countRes(): void {
-    const apiUrl = 'http://127.0.0.1:8000/adminAll'; // Replace with your API URL
+    const apiUrl = 'http://127.0.0.1:8000/reservation'; // Replace with your API URL
     this.http.get<any[]>(apiUrl).subscribe(
       (data: any[]) => {
         this.countR = data.length;
-        console.log('Count:', this.countR);
-      },
-      (error) => {
-        console.error('Error:', error);
+    
       }
     );
   }

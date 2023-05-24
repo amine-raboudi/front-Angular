@@ -46,7 +46,11 @@ import { EditofferComponent } from './admin/offer/editoffer/editoffer.component'
 import { RegisCliComponent } from './regis-cli/regis-cli.component';
 import { AgencyComponent } from './agency/agency.component';
 import { ClientsComponent } from './clients/clients.component';
-
+import { RegisAgComponent } from './regis-ag/regis-ag.component';
+import { RegisAdComponent } from './regis-ad/regis-ad.component';
+import { ReservationComponent } from './admin/reservation/reservation.component';
+import { AddReservationComponent } from './admin/reservation/add-reservation/add-reservation.component';
+import { EditReservationComponent } from './admin/reservation/edit-reservation/edit-reservation.component';
 
 const routes: Routes = [
   { path: 'admin/dashboard', component: AdminComponent }
@@ -109,7 +113,12 @@ const routes: Routes = [
      EditofferComponent,
      RegisCliComponent,
      AgencyComponent,
-     ClientsComponent,    
+     ClientsComponent,
+     RegisAgComponent,
+     RegisAdComponent,
+     ReservationComponent,
+     AddReservationComponent,
+     EditReservationComponent,
     
     
   ],

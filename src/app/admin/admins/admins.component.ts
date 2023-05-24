@@ -117,7 +117,7 @@ export class AdminsComponent {
 
   Accept(email:any,data:any,id:any) {
  
-    this.emailService.sendEmail(email, 'Admin', 'Click <a href="http://127.0.0.1:8000/login">HERE</a>')
+    this.emailService.sendEmail(email, 'Admin', 'Click <a href="http://127.0.0.1:4200/login">HERE</a>')
     .subscribe(() => {
         console.log('ok'); // success response from Symfony 5 API
     });

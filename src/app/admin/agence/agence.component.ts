@@ -148,8 +148,9 @@ deleteUser(id: number) {
   
 Accept(email:any,data:any,id:any) {
  
-  this.emailService.sendAg(email, 'tst', 'HI')
+  this.emailService.sendAg(email, 'Activate Account', 'Hi, after looking at your informations, we decide to accept your account . to login please click <a href="http://127.0.0.1:4200/login">HERE</a>')
   .subscribe(() => {
+      console.log('ok'); 
   });
   data.status="Accepted"  ;
   this.agenceService.updateUser(id, data).subscribe();
@@ -158,7 +159,7 @@ Accept(email:any,data:any,id:any) {
 }
 
 Deny(email:any,data:any,id:any) {
-  this.emailService.Deny(id,email, 'tst', 'HI')
+  this.emailService.DenyAg(email, 'Desctivate Account', 'Hi, Unfortunately we decide to desactivate your account')
   .subscribe(() => {
     });
   data.status="Denied"  ;

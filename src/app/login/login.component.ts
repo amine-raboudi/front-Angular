@@ -19,6 +19,7 @@ export class LoginComponent {
   email: any;
   password: any;
   data:any;
+  tst:any;
 
   constructor(private authService: LoginService,private router: Router) {}
 
@@ -36,14 +37,15 @@ export class LoginComponent {
             state: { data }
         };
   
-        if(decodedToken.roles[0]=='ROLE_AGENT'){
+        if(decodedToken.roles[0]=='ROLE_AGENT'  &&   this.authService.isAuthenticated()){
           this.router.navigate(['/agency'],navigationExtras);
         }else {
-          if(decodedToken.roles[0]=='ROLE_CLIENT'){
+          if(decodedToken.roles[0]=='ROLE_CLIENT' &&   this.authService.isAuthenticated()){
           this.router.navigate(['/client'],navigationExtras);
         }else{
+          if(decodedToken.roles[0]=='ROLE_ADMIN' &&  this.authService.isAuthenticated()){
           this.router.navigate(['/admin'],navigationExtras);
-
+          }
         }
       }
         
