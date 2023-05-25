@@ -10,7 +10,7 @@
       <input type="date" class="form-control" name="dateStart" [(ngModel)]="data.DateStart">
         <br>
         End:
-      <input type="dateEnd" class="form-control" name="dateEnd" [(ngModel)]="data.DateEnd">
+      <input type="date" class="form-control" name="dateEnd" [(ngModel)]="data.DateEnd">
         <br>
        
        Category:
@@ -22,7 +22,13 @@
             <option value="restaurant">  Restaurant</option>
           </select>
         <br>
-        
+        <br>
+        Agency:
+          <select class="form-select" id="Agent" name="Agent"  [(ngModel)]="data.Agent" >
+              <option *ngFor="let item of dataAg; index as i" value="{{item.id}}"  >{{item.id}}--{{item.email}}</option>
+              
+          </select>
+    <br>
         
         <div class="position-absolute top-5000 start-50 translate-middle">
           <button  mat-flat-button color="primary" type="submit"style="margin-left:40px;margin-right:50px;margin-top:100px">update Offer</button>

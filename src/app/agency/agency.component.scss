@@ -1,0 +1,38 @@
+.mat-drawer {
+    height: 100%;
+    position: absolute;
+    left: 0;
+  }
+  .container {
+    height: 100%;
+    width: 100%;
+  }
+  
+  .sidebar {
+    height: 545px;
+    margin-left: 0;
+    background-color: gainsboro;
+  }
+  
+    .sidenav{
+      width: 250px;
+
+    }
+
+    .img{
+      height:80px;
+      width: 80px;
+      margin-left: 55px;
+    }
+
+    .matMenu{
+      background-color: white;
+      color: black;
+    }
+    .hr{
+      color: white;
+    }
+
+    .date{
+      background-color: #726933;
+    }

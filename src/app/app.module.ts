@@ -51,6 +51,9 @@ import { RegisAdComponent } from './regis-ad/regis-ad.component';
 import { ReservationComponent } from './admin/reservation/reservation.component';
 import { AddReservationComponent } from './admin/reservation/add-reservation/add-reservation.component';
 import { EditReservationComponent } from './admin/reservation/edit-reservation/edit-reservation.component';
+import { ClientsAgComponent } from './agency/clients-ag/clients-ag.component';
+import { ResAgComponent } from './agency/res-ag/res-ag.component';
+import { OffAgComponent } from './agency/off-ag/off-ag.component';
 
 const routes: Routes = [
   { path: 'admin/dashboard', component: AdminComponent }
@@ -119,6 +122,9 @@ const routes: Routes = [
      ReservationComponent,
      AddReservationComponent,
      EditReservationComponent,
+     ClientsAgComponent,
+     ResAgComponent,
+     OffAgComponent,
     
     
   ],

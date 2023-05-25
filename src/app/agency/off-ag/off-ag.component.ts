@@ -1,17 +1,17 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { MatTableDataSource } from '@angular/material/table';
 import { DomSanitizer } from '@angular/platform-browser';
-import { AgenceService } from '../agence/agence.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { OfferService } from  'src/app/admin/offer/offer.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { OfferService } from './offer.service';
-import { AddofferComponent } from './addoffer/addoffer.component';
-import { ShowofferComponent } from './showoffer/showoffer.component';
+import { AddofferComponent } from 'src/app/admin/offer/addoffer/addoffer.component';
+import { ShowofferComponent } from 'src/app/admin/offer/showoffer/showoffer.component';
+import { EditofferComponent } from 'src/app/admin/offer/editoffer/editoffer.component';
 import Swal from 'sweetalert2';
-import { EditofferComponent } from './editoffer/editoffer.component';
+import { AgencyService } from '../agency.service';
 
 
 export interface Offer {
@@ -22,21 +22,21 @@ export interface Offer {
   Category:any;
 }
 
-
 @Component({
-  selector: 'app-offer',
-  templateUrl: './offer.component.html',
-  styleUrls: ['./offer.component.scss']
+  selector: 'app-off-ag',
+  templateUrl: './off-ag.component.html',
+  styleUrls: ['./off-ag.component.scss']
 })
-export class OfferComponent {
+export class OffAgComponent {
   clickAll=true;
   clickH=false;
   clickV=false;
   clickO=false;
   clickVo=false;
   clickR=false;
+  @Input() message: any;
 
-
+  dataAg:any;
   i=0;
   j=0;
   k=0;
@@ -54,6 +54,8 @@ export class OfferComponent {
      private domSanitizer: DomSanitizer,
      private _snackBar: MatSnackBar,
      private  OfferService:OfferService,
+     private agService: AgencyService ,
+
 
      private dialog: MatDialog,private router: Router ) 
      {
@@ -75,7 +77,10 @@ export class OfferComponent {
 
 
   ngOnInit() {
-    this.http.get<Offer[]>('http://127.0.0.1:8000/offer').subscribe(data => {
+    this.agService.getAg(this.message).subscribe(data=>{
+      this.dataAg=data;
+      this.http.get<Offer[]>('http://127.0.0.1:8000/offer/offAg/'+ this.dataAg[0].id).subscribe(data => {
+      
       this.dataSource.data = data;
       for(let i = 0; i < data.length; i++){
         if(data[i].Category=='hotel'){
@@ -105,7 +110,8 @@ export class OfferComponent {
       } 
     });
   
-  }
+  })
+}
 
   Click(x:number){
     if(x==1){   
@@ -255,6 +261,4 @@ deleteOffer(id: number) {
    
 }});
   }
-
-
 }

@@ -4,6 +4,8 @@ import Swal from 'sweetalert2';
 import { OfferService } from '../offer.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AgenceService } from '../../agence/agence.service';
+
 
 @Component({
   selector: 'app-addoffer',
@@ -16,11 +18,14 @@ export class AddofferComponent {
   dateEnd:any;
   category:any;
   active:any;
+  Agent:any;
+  data:any;
 
   constructor(
     private dialogRef: MatDialogRef<AddofferComponent>,
     private OfferService: OfferService,
     private router: Router, 
+    private AgenceService: AgenceService,
     private _snackBar: MatSnackBar,
 
   ) {
@@ -28,6 +33,10 @@ export class AddofferComponent {
   }
 
   ngOnInit() {
+    this.AgenceService.getUsers().subscribe(data=>{
+      this.data=data;
+    })
+
     
   
 }
@@ -44,6 +53,7 @@ export class AddofferComponent {
       dateEnd:this.dateEnd,
       category:this.category,
       active:false,
+      Agent:this.Agent
 
     };
      console.log(data);

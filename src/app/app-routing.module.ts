@@ -21,10 +21,10 @@ const routes: Routes = [
   { path: 'register/agent', component: RegisAgComponent },
   { path: 'register/admin', component: RegisAdComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent , canActivate: [AuthGuard] },
+  { path: 'home', component: HomeComponent  },
   { path: 'admin', component: AdminComponent,canActivate: [AuthGuard] },
   { path: 'client', component: ClientsComponent },
-  { path: 'agency', component: AgencyComponent },
+  { path: 'agency', component: AgencyComponent, canActivate: [AuthGuard] },
 
 
   { path: 'admin', 

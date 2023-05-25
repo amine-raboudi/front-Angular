@@ -4,6 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { OfferService } from '../offer.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AgenceService } from '../../agence/agence.service';
+
 
 import { HttpClient } from '@angular/common/http';
 import { Offer } from '../offer.component';
@@ -24,12 +26,13 @@ export class EditofferComponent {
   clientID:any;
   data1:any;
   data2:any;
-  data3:any
-
+  data3:any;
+  dataAg:any;
 
   constructor(
  private _snackBar: MatSnackBar,  
  private http: HttpClient,
+ private AgenceService: AgenceService,
  private dialogRef: MatDialogRef<EditofferComponent>, private OfferService: OfferService,private dialog: MatDialog,private router: Router,@Inject(MAT_DIALOG_DATA) public data: any) {
   }
   openSnackBar(message: string, action: any) {
@@ -40,6 +43,9 @@ export class EditofferComponent {
     });
   }
   ngOnInit() {
+    this.AgenceService.getUsers().subscribe(data=>{
+      this.dataAg=data;
+    })
     
     
   }

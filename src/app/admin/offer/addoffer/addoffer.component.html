@@ -18,6 +18,13 @@
               <option value="5">  Restaurant</option>
           </select>
     <br>
+    <br>
+        Agency:
+          <select class="form-select" id="Agent" name="Agent"  [(ngModel)]="Agent" >
+              <option *ngFor="let item of data; index as i" value="{{item.id}}" selected >{{item.id}}--{{item.email}}</option>
+              
+          </select>
+    <br>
     <label>
       <div class="form-check form-check-inline">
       <p class="lead">

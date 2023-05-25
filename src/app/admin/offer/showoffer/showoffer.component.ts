@@ -16,6 +16,7 @@ export class ShowofferComponent {
   }
   ngOnInit() {
     
+    
   }
   onCancel() {
     this.dialogRef.close(this.data);
