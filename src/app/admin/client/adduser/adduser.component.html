@@ -6,30 +6,20 @@
        
   <input type="email" class="form-control" placeholder="Enter an email" id="email" name="email" [(ngModel)]="email"><br>
   <input type="password" id="password" name="password" class="form-control" placeholder="Enter an password"[(ngModel)]="password"><br>
-  <br>
-          roles:
-          <select class="form-select" name="roles"value="roles"id="roles"  disabled>
-              <option selected value="ROLE_CLIENT">ROLE_CLIENT</option>
-              <option value="ROLE_AGENT">ROLE_AGENT</option>
-              <option value="ROLE_ADMIN">ROLE_ADMIN</option>
-          </select>
-    
-    <label>
-      <div class="form-check form-check-inline">
-      <p class="lead">
-      Account Verified:
-      </p>
-    </div>
-      
-      <div class="form-check form-check-inline">
-      <input class="form-check-input"type="radio" id="NO" name="NO"  value="0"[(ngModel)]="is_verified">
-      <label for="NO"class="form-check-label">NO</label>
-      <br>
-      <input class="form-check-input"type="radio" id="YES" name="YES" value="1"[(ngModel)]="is_verified">
-      <label for="YES"class="form-check-label">YES </label><br> 
-      </div> 
-  
-</label><br>
+  <input type="text" id="fullName" name="fullName" class="form-control" placeholder="Enter an fullName"[(ngModel)]="fullName"><br>
+  <input 
+    class="form-control"
+    name="phoneNumber"
+    id="phoneNumber"
+    type="tel" 
+    placeholder="Enter an phoneNumber"
+    [(ngModel)]="phoneNumber"
+    >
+<br>
+  <input type="text" id="adress" name="adress" class="form-control" placeholder="Enter an adress"[(ngModel)]="adress"><br>
+  <input type="text" id="country" name="country" class="form-control" placeholder="Enter an country"[(ngModel)]="country"><br>
+
+   
 
     <div class="position-absolute top-5000 start-50 translate-middle">
       <button  mat-flat-button color="primary" type="submit"style="margin-left:40px;margin-right:50px;margin-top:100px" >Add client</button>

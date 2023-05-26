@@ -7,6 +7,7 @@
       <div  class="row">
       <div class="col">
         
+        
         <div  class="row">
             <div class="col">
               <h1 style="color:#e3544f;text-align:center">
@@ -38,7 +39,7 @@
           <div  class="row">
               <div class="col">
                 <h1 style="color:#e3544f;text-align:center">
-                   <b> PASSWORD:</b>  <span  style="color:white"> ******</span>
+                   <b> Phone Number:</b>  <span  style="color:white"> {{ data.value.phoneNumber}}</span>
                 </h1> 
                 </div>
             
@@ -51,7 +52,7 @@
           <div  class="row">
               <div class="col">
                 <h1 style="color:#e3544f;text-align:center">
-                  <b> ROLE:</b>   <span  style="color:white"> {{ data.value.roles }}</span>
+                  <b> Adress:</b>   <span  style="color:white"> {{ data.value.adress }}</span>
                 </h1> 
                 </div>
             
@@ -63,9 +64,9 @@
       <div class="row">
        
         <h1 style="color:#e3544f;text-align:center">
-            <b> VERIFIED:</b>  
-             <span *ngIf="data.value.is_verified" style="color:white;"> YES</span>
-             <span *ngIf="!data.value.is_verified" style="color:white"> NO</span>
+            <b> Country:</b>  
+             <span  style="color:white;">  {{ data.value.country }}</span>
+             
 
           </h1> 
         

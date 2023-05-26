@@ -18,6 +18,10 @@ export class AdduserComponent implements OnInit{
   email: any;
   password: any;
   is_verified: any;
+  adress:any;
+  phoneNumber:any;
+  country:any;
+  fullName:any;
 
   constructor(
     private _snackBar: MatSnackBar,
@@ -50,7 +54,12 @@ export class AdduserComponent implements OnInit{
       email: this.email,
       password:this.password,
       roles:["ROLE_CLIENT"],
-      is_verified:this.is_verified
+      is_verified:false,
+      adress:this.adress,
+      phoneNumber:this.phoneNumber,
+      country:this.country,
+      fullName:this.fullName
+
      };
      console.log(data);
     Swal.fire({

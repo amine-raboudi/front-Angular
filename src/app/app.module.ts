@@ -54,6 +54,11 @@ import { EditReservationComponent } from './admin/reservation/edit-reservation/e
 import { ClientsAgComponent } from './agency/clients-ag/clients-ag.component';
 import { ResAgComponent } from './agency/res-ag/res-ag.component';
 import { OffAgComponent } from './agency/off-ag/off-ag.component';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input';
+
 
 const routes: Routes = [
   { path: 'admin/dashboard', component: AdminComponent }
@@ -63,6 +68,9 @@ const routes: Routes = [
 @NgModule({
 
   imports: [
+    MatFormFieldModule,
+    MatInputModule, 
+    MatSelectModule,
     MatBadgeModule,
     MatRadioModule,
     MatGridListModule,
@@ -87,6 +95,7 @@ const routes: Routes = [
     MatSidenavModule,
     MatListModule,
     MatToolbarModule,
+    NgxIntlTelInputModule,
     RouterModule.forRoot(routes),
     ],
   providers: [],
@@ -125,6 +134,8 @@ const routes: Routes = [
      ClientsAgComponent,
      ResAgComponent,
      OffAgComponent,
+     
+
     
     
   ],

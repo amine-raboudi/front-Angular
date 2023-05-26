@@ -4,34 +4,26 @@
         
       
         Email:
-        <input type="email" class="form-control" name="email" [(ngModel)]="data.email">
+        <input type="email" class="form-control" name="email" [(ngModel)]="data.email"  disabled>
       <br>
       
-        password:
-        <input type="password"  class="form-control"name="password"[(ngModel)]="data.password"  disabled>
-       <br>
-          roles:
-          <select class="form-select" name="roles"value="roles"id="roles"[(ngModel)]="data.roles[0]">
-              <option value="ROLE_CLIENT">ROLE_CLIENT</option>
-              <option value="ROLE_AGENT">ROLE_AGENT</option>
-              <option value="ROLE_ADMIN">ROLE_ADMIN</option>
-          </select>
-        <br>
-        
-          <div class="form-check form-check-inline">
-          <p class="lead">
-          Account Verified:
-          </p>
-        </div>
-    
-          <div class="form-check form-check-inline">
-          <input class="form-check-input"type="radio" id="NO" name="age"  value="0"[(ngModel)]="data.is_verified">
-          <label for="NO">NO</label>
-          <br>
-          <input class="form-check-input"type="radio" id="YES" name="age" value="1"[(ngModel)]="data.is_verified">
-          <label for="YES">YES </label><br> 
-          </div> 
-        <br>
+      Name:
+        <input type="text" id="fullName" name="fullName" class="form-control" placeholder="Enter an fullName"[(ngModel)]="data.fullName"><br>
+        PhoneNumber
+        <input 
+        class="form-control"
+        name="phoneNumber"
+        id="phoneNumber"
+        type="tel" 
+        placeholder="Enter an phoneNumber"
+        [(ngModel)]="data.phoneNumber"
+        ><br>
+        Adress:
+        <input type="text" id="adress" name="adress" class="form-control" placeholder="Enter an adress"[(ngModel)]="data.adress"><br>
+        :country
+        <input type="text" id="country" name="country" class="form-control" placeholder="Enter an country"[(ngModel)]="data.country"><br>
+
+          
         <div class="position-absolute top-5000 start-50 translate-middle">
           <button  mat-flat-button color="primary" type="submit"style="margin-left:40px;margin-right:50px;margin-top:100px">Update Client</button>
           <button  mat-flat-button style="background-color:#b3b0b5;margin-top:100px;" type="button"(click)="onCancel()">Cancel</button>

@@ -17,8 +17,11 @@ export class EditClientComponent {
   idf:any;
   email: any;
   password: any;
-  roles: any;
   is_verified: any;
+  adress:any;
+  phoneNumber:any;
+  country:any;
+  fullName:any;
   clientID:any;
   constructor( private _snackBar: MatSnackBar,   private dialogRef: MatDialogRef<EditClientComponent>, private clientService: ClientService,private dialog: MatDialog,private router: Router,@Inject(MAT_DIALOG_DATA) public data: any) {
   }

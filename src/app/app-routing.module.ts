@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'register/admin', component: RegisAdComponent },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent  },
-  { path: 'admin', component: AdminComponent,canActivate: [AuthGuard] },
+  { path: 'admin', component: AdminComponent },
   { path: 'client', component: ClientsComponent },
   { path: 'agency', component: AgencyComponent, canActivate: [AuthGuard] },
 

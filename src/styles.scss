@@ -2,6 +2,7 @@
 
 /* Importing Bootstrap SCSS file. */
 @import 'node_modules/bootstrap/scss/bootstrap';
+
 body{
     background-color: rgb(246, 250, 250);
 }
@@ -10,5 +11,5 @@ html, body { height: 100%; }
   
   .blue-snackbar {
     background-color: #2d2c2e;
-    color: white; /* set text color to white for better contrast */
+    
   }

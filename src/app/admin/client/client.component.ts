@@ -19,6 +19,11 @@ export interface User {
   password:string;
   roles:[];
   is_verified:boolean;
+  fullName:string;
+  country:string;
+  adress:string;
+  phoneNumber:string;
+
 }
 
 
@@ -35,10 +40,16 @@ export class ClientComponent implements OnInit {
   password: any;
   roles: any;
   is_verified: any;
+  fullName:any;
+  country:any;
+  adress:any;
+  phoneNumber:any;
   clientID:any;
 
-  displayedColumns: string[] = ['id', 'email', 'password','roles','is_verified','edit'];
+  displayedColumns: string[] = ['id', 'fullName','email', 'adress','phoneNumber','country','is_verified','edit'];
   dataSource = new MatTableDataSource<User>();
+
+  
 
 
   constructor(private clientService: ClientService,
@@ -60,7 +71,7 @@ openAddUserDialog():void {
   const dialogRef = this.dialog.open(AdduserComponent,{
    
     width : '800px',
-    height : '500px',
+    height : '550px',
     panelClass : 'my-dialog-class'
   });
 
@@ -92,7 +103,7 @@ openEditUserDialog(data:any,id:any):void {
     const dialogRef = this.dialog.open(EditClientComponent,{
       data:data[0],
       width : '800px',
-      height : '500px',
+      height : '600px',
       panelClass : 'my-dialog-class'
     });
     console.log(data[0]);
