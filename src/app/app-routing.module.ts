@@ -13,6 +13,8 @@ import { AgencyComponent } from './agency/agency.component';
 import { ClientsComponent } from './clients/clients.component';
 import { RegisAgComponent } from './regis-ag/regis-ag.component';
 import { RegisAdComponent } from './regis-ad/regis-ad.component';
+import { AdminAuthGuard } from './admin-auth.guard';
+import { AgencyAuthGuard } from './agency-auth.guard';
 
 
 const routes: Routes = [
@@ -22,9 +24,9 @@ const routes: Routes = [
   { path: 'register/admin', component: RegisAdComponent },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent  },
-  { path: 'admin', component: AdminComponent },
-  { path: 'client', component: ClientsComponent },
-  { path: 'agency', component: AgencyComponent, canActivate: [AuthGuard] },
+  { path: 'admin', component: AdminComponent ,canActivate:[AdminAuthGuard]},
+  { path: 'client', component: ClientsComponent, canActivate:[AuthGuard]},
+  { path: 'agency', component: AgencyComponent ,canActivate:[AgencyAuthGuard]},
 
 
   { path: 'admin', 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from '../login/login-service';
+import { AnimationKeyframesSequenceMetadata } from '@angular/animations';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -20,11 +21,18 @@ loadR=false;
 today:any;
 date = new Date();
 email:any;
+password:any
+token:any
+roles:any
 
   constructor(private route: ActivatedRoute,private router: Router,private authService: LoginService) { 
     const navigationState = this.router.getCurrentNavigation()?.extras?.state;
     if (navigationState && navigationState['data']) {
       this.email = navigationState['data'].email;
+      this.roles = navigationState['data'].roles;
+      this.password = navigationState['data'].password;
+
+      this.token=navigationState['data'].token
     }
    
 
@@ -43,9 +51,17 @@ const options = {
     this.date=this.today.toLocaleString('en-US', options);
 console.log(this.date); 
   }
+
   logout(): void {
-    this.authService.logout();
-  }
+  
+        this.authService.logoutAd();
+      }
+    
+    
+    
+    
+
+  
 
   navigateTo(x:number){
     if(x==1){

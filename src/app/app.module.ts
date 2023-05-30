@@ -58,6 +58,7 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
+import { ImageComponent } from './admin/agence/image/image.component';
 
 
 const routes: Routes = [
@@ -134,6 +135,7 @@ const routes: Routes = [
      ClientsAgComponent,
      ResAgComponent,
      OffAgComponent,
+     ImageComponent,
      
 
     

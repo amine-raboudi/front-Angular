@@ -1,6 +1,71 @@
-<form (ngSubmit)="registerUser()">
-    <input type="email" name="email" [(ngModel)]="email" placeholder="Email" required>
-    <input type="password" name="password" [(ngModel)]="password" placeholder="Password" required>
-    <button type="submit">Register</button>
+
+<div  class="container">
+  <form [formGroup]="userForm" (ngSubmit)="registerUser()"  #myForm="ngForm">
+    <mat-card style=" background-color: #2d4529;">  
+      <mat-card-header  style="margin-left:210px;margin-bottom:30px;color:#fcfdff">
+        <mat-card-title >Sign Up </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+      <hr>
+        <div>
+          <mat-form-field appearance="fill"style="margin-left:50px">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" required>
+          <mat-error *ngIf="userForm.get('name')?.hasError('required')">Name is required</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="margin-left:30px">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" required>
+          <mat-error *ngIf="userForm.get('email')?.hasError('required')">Email is required</mat-error>
+          <mat-error *ngIf="userForm.get('email')?.hasError('email')">Invalid email format</mat-error>
+        </mat-form-field>
+      </div>
+      
+    <div>
+     
+      <mat-form-field appearance="fill" style="margin-left:50px;margin-bottom:20px;margin-top:20px">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" type="password" required>
+        <mat-error *ngIf="userForm.get('password')?.hasError('required')">Password is required</mat-error>
+        <mat-error *ngIf="userForm.get('password')?.hasError('minlength')">Password must be at least 6 characters long</mat-error>
+
+      </mat-form-field>
+      <mat-form-field appearance="fill" style="margin-left:30px">
+        <mat-label>Address</mat-label>
+        <input matInput formControlName="address" required>
+        <mat-error *ngIf="userForm.get('address')?.hasError('required')">Address is required</mat-error>
+      </mat-form-field>
+  </div>
+  
+  <div>
+    <mat-form-field appearance="fill" style="margin-left:50px">
+    <mat-label>Country</mat-label>
+    <input matInput formControlName="country" required>
+    <mat-error *ngIf="userForm.get('country')?.hasError('required')">Country is required</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill" style="margin-left:30px">
+    <mat-label>Phone Number</mat-label>
+    <input matInput formControlName="phoneNumber" required>
+    <mat-error *ngIf="userForm.get('phoneNumber')?.hasError('required')">Phone Number is required</mat-error>
+  </mat-form-field>
+  <div  style="margin-left:50px;width:430px;">
+  <input  formControlName="logo"class="form-control" type= "file" required (change)="onFileSelected($event)">
+  <mat-error *ngIf=" userForm.get('logo')?.untouched || userForm.get('logo')?.hasError('required')">logo is required</mat-error>
+
+  </div>
+</div>
+
+        
+  
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" style="margin-left:230px;"type="submit" [disabled]="userForm.invalid">Register</button>
+        
+      </mat-card-actions>
+    </mat-card>
   </form>
   
+  <div>
+
+
+

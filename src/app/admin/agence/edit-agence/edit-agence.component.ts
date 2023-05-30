@@ -10,7 +10,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './edit-agence.component.html',
   styleUrls: ['./edit-agence.component.scss']
 })
+
 export class EditAgenceComponent {
+  selectedImage!: File;
+
   constructor(        private _snackBar: MatSnackBar,
     private dialogRef: MatDialogRef<EditAgenceComponent>, private clientService: AgenceService,private dialog: MatDialog,private router: Router,@Inject(MAT_DIALOG_DATA) public data: any) {
   }
@@ -18,7 +21,7 @@ export class EditAgenceComponent {
   updateUser(id:any,data:any) {
     this.clientService.getUserById(id).subscribe(() => {
       this.data = data;
-      console.log(id);
+      console.log(data);
     
     });
     
@@ -32,6 +35,7 @@ export class EditAgenceComponent {
       showCancelButton: true,  
       }).then((result) => {
       if (result.isConfirmed) {
+       
         this.clientService.updateUser(id, data).subscribe(response => {
           console.log(response);
         });
@@ -40,6 +44,12 @@ export class EditAgenceComponent {
 
       }});
 };
+onFileSelected(event: any) {
+  this.selectedImage = event.target.files[0].name;
+  this.data.log=this.selectedImage
+  console.log(this.selectedImage);
+  
+}
 
 onCancel() {
   this.dialogRef.close();

@@ -12,6 +12,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ImageComponent } from './image/image.component';
 
 
 export interface User {
@@ -20,9 +21,12 @@ export interface User {
   password:string;
   roles:[];
   status:string;
+  name:string;
+  country:string;
+  adress:string;
+  phoneNumber:string;
+  logo:File;
 }
-
-
 
 @Component({
   selector: 'app-agence',
@@ -36,12 +40,13 @@ export interface User {
 export class AgenceComponent {
   data: any;
   id: any;
+  logo:any;
   users: any;
   recipient: any;
   subject: any;
   message:  any;
 
-  displayedColumns: string[] = ['id', 'email', 'password','roles','status','action','edit'];
+  displayedColumns: string[] = ['id','logo', 'name','email', 'adress','phoneNumber','country','status','action','edit'];
   dataSource = new MatTableDataSource<User>();
 
   
@@ -110,10 +115,12 @@ openEditUserDialog(data:any,id:any):void {
   
   const clientID  =this.agenceService.getUserById(id).subscribe((data: any) => {
     this.data = data;
+    console.log(data);
+    
     const dialogRef = this.dialog.open(EditAgenceComponent,{
       data:data[0],
       width : '800px',
-      height : '500px',
+      height : '700px',
       panelClass : 'my-dialog-class'
     });
     dialogRef.afterClosed().subscribe()
@@ -143,16 +150,20 @@ deleteUser(id: number) {
   ngOnInit() {
     this.http.get<User[]>('http://127.0.0.1:8000/agenceAll').subscribe(data => {
       this.dataSource.data = data;
+      console.log(data);
+      
     });
   }
   
 Accept(email:any,data:any,id:any) {
  
   this.emailService.sendAg(email, 'Activate Account', 'Hi, after looking at your informations, we decide to accept your account . to login please click <a href="http://127.0.0.1:4200/login">HERE</a>')
-  .subscribe(() => {
-      console.log('ok'); 
+  .subscribe((response) => {
+      console.log(response); 
   });
   data.status="Accepted"  ;
+  console.log(data);
+  
   this.agenceService.updateUser(id, data).subscribe();
 
   
@@ -160,12 +171,27 @@ Accept(email:any,data:any,id:any) {
 
 Deny(email:any,data:any,id:any) {
   this.emailService.DenyAg(email, 'Desctivate Account', 'Hi, Unfortunately we decide to desactivate your account')
-  .subscribe(() => {
-    });
+  .subscribe((response) => {
+    console.log(response); 
+});
   data.status="Denied"  ;
   this.agenceService.updateUser(id, data).subscribe();
 
   
+}
+
+
+openImage(id:any): void {
+  this.agenceService.getUserById(id).subscribe((data)=>{
+    this.data=data;
+    console.log(this.data);
+    
+  })
+  const dialogRef = this.dialog.open(ImageComponent, {
+    data: {
+      imageUrl: this.data[0].logo
+    }
+  });
 }
   
 }

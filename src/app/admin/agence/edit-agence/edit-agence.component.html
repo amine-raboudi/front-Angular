@@ -1,28 +1,35 @@
-<h1 mat-dialog-titles style="text-align:center;color:#d8b9ed;">Edit Client</h1>
+<h1 mat-dialog-titles style="text-align:center;color:#d8b9ed;">Edit Agency</h1>
 <hr>
     <form (ngSubmit)="updateUser(data.id,data)">
-        
-      
-        Email:
+        <div  class="row">
+          <div  class="col">
+           
+                <img src="{{ data.logo }}" alt="Image" class="image-preview"  >
+              
+
+          </div>
+          <div  class="col">
+          <mat-card >
+              <mat-card-content style="color:gray">
+
+          <input type="text" class="form-control" name="name" [(ngModel)]="data.name">
+          <br>
         <input type="email" class="form-control" name="email" [(ngModel)]="data.email">
+        <br>
+        <input type="tel" class="form-control" name="tel" [(ngModel)]="data.phoneNumber">
+        <br>
+        <input type="text" class="form-control" name="address" [(ngModel)]="data.adress">
+        <br>
+        <input type="text" class="form-control" name="country" [(ngModel)]="data.country">
       <br>
       
-        password:
-        <input type="password"  class="form-control"name="password"[(ngModel)]="data.password"  disabled>
-       <br>
-          roles:
-          <select class="form-select" name="roles"value="roles"id="roles"[(ngModel)]="data.roles[0]">
-              <option value="ROLE_CLIENT">ROLE_CLIENT</option>
-              <option value="ROLE_AGENT">ROLE_AGENT</option>
-              <option value="ROLE_ADMIN">ROLE_ADMIN</option>
-          </select>
-        <br>
+       
         
           <div class="form-check form-check-inline">
           <p class="lead">
           Status:
           </p>
-        </div>
+       
     
         <div class="form-check form-check-inline" >
             <input disable  class="form-check-input"type="radio" id="Waiting" name="Waiting"  value="Waiting"[(ngModel)]="data.status"  disabled>
@@ -34,12 +41,22 @@
             <input  disable class="form-check-input"type="radio" id="Denied" name="Denied" value="Denied"[(ngModel)]="data.status"  disabled>
             <label for="YES"class="form-check-label">Denied </label>
             <br> 
+          </div>
+
         </div>
+              </mat-card-content>
+            </mat-card>
+
+         
+      
+        
         <br>
         <div class="position-absolute top-5000 start-50 translate-middle">
-          <button  mat-flat-button color="primary" type="submit"style="margin-left:40px;margin-right:50px;margin-top:100px">update client</button>
+          <button  mat-flat-button color="primary" type="submit"style="margin-left:40px;margin-right:50px;margin-top:100px">update agency</button>
           <button  mat-flat-button style="background-color:#b3b0b5;margin-top:100px;" type="button"(click)="onCancel()">Cancel</button>
 
            </div>
+          </div>
+        </div>    
     </form>
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from '../login/login-service';
 import { AgencyService } from './agency.service';
+import { Token } from '@angular/compiler';
 
 @Component({
   selector: 'app-agency',
@@ -24,11 +25,14 @@ export class AgencyComponent {
   id:any;
   data:any
   idAg:any
+  token:any
+  password:any
   
     constructor(private route: ActivatedRoute,private router: Router,private authService: LoginService,private agService: AgencyService) { 
       const navigationState = this.router.getCurrentNavigation()?.extras?.state;
       if (navigationState && navigationState['data']) {
         this.email = navigationState['data'].email;
+        this.token=navigationState['data'].token
 
       }
      
@@ -60,7 +64,9 @@ export class AgencyComponent {
 
 
     logout(): void {
-      this.authService.logout();
+      this.authService.logoutAg();
+      
+      
     }
   
     navigateTo(x:number){

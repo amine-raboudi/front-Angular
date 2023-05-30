@@ -21,6 +21,7 @@ export class AgenceService {
   }
 
   updateUser(id: number, user: any) {
+    
     return this.http.put('http://127.0.0.1:8000/agence/update/'+id, user);
     
 

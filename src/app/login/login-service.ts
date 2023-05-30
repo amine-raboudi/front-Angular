@@ -19,23 +19,39 @@ interface DecodedToken {
 export class LoginService {
   private apiUrl = 'http://localhost:8000'; // Replace with your Symfony backend URL
   private jwtHelper: JwtHelperService;
-  token: any;
   constructor(private http: HttpClient,private router: Router) {
     this.jwtHelper = new JwtHelperService();
   }
 
   login(email: string, password: string) {
-    return this.http.post<{ token: any }>(`${this.apiUrl}/login`, { email, password })
+    return this.http.post<{ token: any,role:any}>(`${this.apiUrl}/login`, { email, password })
       
   }
 
-  logout(): void {
-    localStorage.removeItem('token');
+  logoutAd(): void {
+    localStorage.removeItem('token3');
+    this.router.navigate(['/login']);
+  }
+  logoutAg(): void {
+    localStorage.removeItem('token1');
+    this.router.navigate(['/login']);
+  }
+  logoutCl(): void {
+    localStorage.removeItem('token2');
     this.router.navigate(['/login']);
   }
 
-  isAuthenticated(): boolean {
-    const token = localStorage.getItem('token');
+  isAuthenticatedAdmin(): boolean {
+    const token = localStorage.getItem('token3');
+    return !this.jwtHelper.isTokenExpired(token);
+  }
+  isAuthenticatedAgency(): boolean {
+    const token = localStorage.getItem('token1');
+    return !this.jwtHelper.isTokenExpired(token);
+  }
+  isAuthenticatedclient(): boolean {
+
+    const token = localStorage.getItem('token2');
     return !this.jwtHelper.isTokenExpired(token);
   }
 
