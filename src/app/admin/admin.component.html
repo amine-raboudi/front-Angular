@@ -21,7 +21,7 @@
       
       <!-- create the dropdown menu -->
       <mat-menu #menu="matMenu"  >
-        <button mat-menu-item  > <mat-icon>settings</mat-icon>{{email}}</button>
+        <button mat-menu-item  > <mat-icon>settings</mat-icon>{{persistedData.email}}</button>
         <hr class="hr">
         <button (click)="logout()" mat-menu-item  ><mat-icon>logout</mat-icon>Logout</button>
       </mat-menu>
@@ -36,7 +36,6 @@
 
 <mat-sidenav-container  >
     <mat-sidenav #sidenav class="sidenav"  style="background-color:#1d211f;"  opened mode="side" position="start"  >
-       <hr><h3  style="text-align:center;">mail</h3><hr>
       <mat-nav-list   >
       <a mat-list-item (click)="navigateTo(1)"><mat-icon fontSize="large"style="margin-right:5px;">dashboard</mat-icon>DashBoard</a>
       <a mat-list-item (click)="navigateTo(4)"><mat-icon  fontSize="large"style="margin-right:5px;">Admin</mat-icon>Admins </a>
@@ -45,9 +44,11 @@
       <a mat-list-item (click)="navigateTo(3)"><mat-icon  fontSize="large"style="margin-right:5px;">apartment</mat-icon>Agencies</a>
       <a mat-list-item (click)="navigateTo(6)"><mat-icon  fontSize="large"style="margin-right:5px;">local_offer</mat-icon>Offers</a>
       <a mat-list-item (click)="navigateTo(7)"><mat-icon  fontSize="large"style="margin-right:5px;">access_time</mat-icon>Reservations</a>
-
+        <hr>
 
     </mat-nav-list>
+    <button mat-menu-item  > <mat-icon>settings</mat-icon>{{persistedData.email}}</button>
+
     </mat-sidenav>
     <mat-sidenav-content    class="sidebar">
         

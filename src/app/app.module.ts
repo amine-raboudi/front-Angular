@@ -1,7 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { MatBadgeModule } from '@angular/material/badge';
 import { CommonModule } from '@angular/common'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +12,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDialogModule} from "@angular/material/dialog";
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { LoginComponent } from './login/login.component';
 import { AdduserComponent } from './admin/client/adduser/adduser.component';
 import { AdminComponent } from './admin/admin.component';
@@ -59,6 +57,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import { ImageComponent } from './admin/agence/image/image.component';
+import { MatSelectSearchModule } from 'mat-select-search';
 
 
 const routes: Routes = [
@@ -69,10 +68,11 @@ const routes: Routes = [
 @NgModule({
 
   imports: [
+    MatSelectSearchModule,
     MatFormFieldModule,
     MatInputModule, 
     MatSelectModule,
-    MatBadgeModule,
+    MatCardModule,
     MatRadioModule,
     MatGridListModule,
     MatCardModule,
@@ -92,7 +92,6 @@ const routes: Routes = [
     BrowserAnimationsModule,
     MatDialogModule,
     NgbDropdownModule,
-    MatAutocompleteModule,
     MatSidenavModule,
     MatListModule,
     MatToolbarModule,

@@ -46,7 +46,7 @@ export class AgenceComponent {
   subject: any;
   message:  any;
 
-  displayedColumns: string[] = ['id','logo', 'name','email', 'adress','phoneNumber','country','status','action','edit'];
+  displayedColumns: string[] = ['id','logo', 'name','email','phoneNumber', 'country','city','adress','status','action'];
   dataSource = new MatTableDataSource<User>();
 
   

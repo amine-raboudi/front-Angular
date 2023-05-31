@@ -5,6 +5,8 @@ import { NavigationExtras, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { HttpClient } from '@angular/common/http';
+import { AdminAuthGuard } from '../admin-auth.guard';
+import { DataStorageService } from '../data-storage.service';
 
 interface DecodedToken {
   email: any;
@@ -28,7 +30,7 @@ export class LoginComponent {
   userForm!: FormGroup;
  
 
-  constructor(private authService: LoginService,private router: Router,private formBuilder: FormBuilder,private http:HttpClient) {}
+  constructor(private dataStorageService: DataStorageService,private authService: LoginService,private router: Router,private formBuilder: FormBuilder,private http:HttpClient) {}
   ngOnInit() {
     this.userForm = this.formBuilder.group({
      
@@ -37,6 +39,8 @@ export class LoginComponent {
       
 
     });
+    
+    
   }
 
   login(): void {
@@ -54,11 +58,9 @@ export class LoginComponent {
           
           localStorage.setItem('token1', token);
           const data = { email: decodedToken.email };
-        const navigationExtras: NavigationExtras = {
-              state: { data }
-          };
+          this.dataStorageService.setAg(data);
           
-          this.router.navigate(['/agency'],navigationExtras);
+          this.router.navigate(['/agency']);
         }else {
           if(role=='ROLE_CLIENT' ){
             const token = response?.token;
@@ -66,10 +68,10 @@ export class LoginComponent {
             
             localStorage.setItem('token2', token);
             const data = { email: decodedToken.email };
-          const navigationExtras: NavigationExtras = {
-                state: { data }
-            };
-          this.router.navigate(['/client'],navigationExtras);
+            
+            this.dataStorageService.setCli(data);
+
+          this.router.navigate(['/client']);
         }else{
           if(role=='ROLE_ADMIN' ){
             const token = response?.token;
@@ -77,12 +79,15 @@ export class LoginComponent {
             
             localStorage.setItem('token3', token);
             const data = { email: decodedToken.email,token:token };
-          const navigationExtras: NavigationExtras = {
-                state: { data }
-            };
+           this.dataStorageService.setAd(data);
+           
+            
+            
+            
+
          
 
-          this.router.navigate(['/admin'],navigationExtras);
+          this.router.navigate(['/admin']);
           }
         }
       }

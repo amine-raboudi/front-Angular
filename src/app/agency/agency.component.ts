@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from '../login/login-service';
 import { AgencyService } from './agency.service';
 import { Token } from '@angular/compiler';
+import { DataStorageService } from '../data-storage.service';
 
 @Component({
   selector: 'app-agency',
@@ -27,14 +28,10 @@ export class AgencyComponent {
   idAg:any
   token:any
   password:any
+  persistedData:any
   
-    constructor(private route: ActivatedRoute,private router: Router,private authService: LoginService,private agService: AgencyService) { 
-      const navigationState = this.router.getCurrentNavigation()?.extras?.state;
-      if (navigationState && navigationState['data']) {
-        this.email = navigationState['data'].email;
-        this.token=navigationState['data'].token
-
-      }
+    constructor(private dataStorageService: DataStorageService,private route: ActivatedRoute,private router: Router,private authService: LoginService,private agService: AgencyService) { 
+      
      
   
     }
@@ -50,15 +47,17 @@ export class AgencyComponent {
     day: '2-digit'
   }; // change to your desired time zone
       this.date=this.today.toLocaleString('en-US', options);
+      this.persistedData = this.dataStorageService.getAg();
 
-      this.agService.getAg(this.email).subscribe(data=>{
-        this.data=data;
+     this.agService.getAg(this.persistedData.email).subscribe((response)=>{
+        this.data=response;
+        console.log(this.data);
+        
        
 
        
         
       });
-      
     }
    
 

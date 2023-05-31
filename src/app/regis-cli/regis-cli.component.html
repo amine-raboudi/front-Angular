@@ -30,20 +30,37 @@
         <mat-error *ngIf="userForm.get('password')?.hasError('minlength')">Password must be at least 6 characters long</mat-error>
 
       </mat-form-field>
-      <mat-form-field appearance="fill" style="margin-left:30px">
-        <mat-label>Address</mat-label>
-        <input matInput formControlName="address" required>
-        <mat-error *ngIf="userForm.get('address')?.hasError('required')">Address is required</mat-error>
+      <mat-form-field appearance="fill" style="margin-left:30px;margin-bottom:20px;margin-top:20px">
+        <mat-label>Confirm Password</mat-label>
+        <input matInput formControlName="confirmPassword" type="password" required>
+        <mat-error *ngIf="userForm.get('confirmPassword')?.hasError('required')">Password is required</mat-error>
+        <mat-error *ngIf="userForm.get('confirmPassword')?.hasError('passwordMismatch')">Passwords do not match</mat-error>
+
       </mat-form-field>
+      
   </div>
   
   <div>
     <mat-form-field appearance="fill" style="margin-left:50px">
-    <mat-label>Country</mat-label>
-    <input matInput formControlName="country" required>
-    <mat-error *ngIf="userForm.get('country')?.hasError('required')">Country is required</mat-error>
+      <mat-select  formControlName="country" placeholder="Select a country">
+        <mat-select-search   >
+          <mat-option *ngFor="let country of filteredCountries" [value]="country">
+            <span class="flag-icon flag-icon-{{ country.code |  lowercase}}"></span>{{ country.name }}
+  
+          </mat-option>
+
+        </mat-select-search>
+
+      </mat-select>
+      <mat-error *ngIf="userForm.get('country')?.hasError('required')">Country   is required</mat-error>
+
   </mat-form-field>
-  <mat-form-field appearance="fill" style="margin-left:30px">
+  <mat-form-field appearance="fill" style="margin-left:30px;margin-bottom:20px;">
+    <mat-label>Address</mat-label>
+    <input matInput formControlName="address" required>
+    <mat-error *ngIf="userForm.get('address')?.hasError('required')">Address is required</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill" style="margin-left:50px">
     <mat-label>Phone Number</mat-label>
     <input matInput formControlName="phoneNumber" required>
     <mat-error *ngIf="userForm.get('phoneNumber')?.hasError('required')">Phone Number is required</mat-error>

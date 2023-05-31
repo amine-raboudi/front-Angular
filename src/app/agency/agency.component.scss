@@ -9,7 +9,7 @@
   }
   
   .sidebar {
-    height: 545px;
+    height: 625px;
     margin-left: 0;
     background-color: gainsboro;
   }
@@ -22,7 +22,15 @@
     .img{
       height:80px;
       width: 80px;
-      margin-left: 55px;
+      margin-left: 500px;
+    }
+    .logo{
+      height:150px;
+      width: 180px;
+      margin-left: 30px;
+      margin-top: 30px;
+      border-radius: 50%;
+      
     }
 
     .matMenu{
@@ -36,3 +44,6 @@
     .date{
       background-color: #726933;
     }
+
+
+    

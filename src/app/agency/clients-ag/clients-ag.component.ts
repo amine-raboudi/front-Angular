@@ -118,6 +118,8 @@ openEditUserDialog(data:any,id:any):void {
       this.http.get<User[]>('http://127.0.0.1:8000/reservation/agenceCli/'+ this.dataAg[0].id).subscribe(data => {
       
       this.dataSource.data = data;
+      console.log(data);
+      
     });
     })
     
