@@ -4,6 +4,9 @@ import { LoginService } from '../login/login-service';
 import { AgencyService } from './agency.service';
 import { Token } from '@angular/compiler';
 import { DataStorageService } from '../data-storage.service';
+import { EditAgenceComponent } from '../admin/agence/edit-agence/edit-agence.component';
+import { MatDialog } from '@angular/material/dialog';
+import { EditAgencyComponent } from './edit-agency/edit-agency.component';
 
 @Component({
   selector: 'app-agency',
@@ -30,7 +33,7 @@ export class AgencyComponent {
   password:any
   persistedData:any
   
-    constructor(private dataStorageService: DataStorageService,private route: ActivatedRoute,private router: Router,private authService: LoginService,private agService: AgencyService) { 
+    constructor(private dialog: MatDialog,private dataStorageService: DataStorageService,private route: ActivatedRoute,private router: Router,private authService: LoginService,private agService: AgencyService) { 
       
      
   
@@ -59,7 +62,21 @@ export class AgencyComponent {
         
       });
     }
-   
+    openEditUserDialog(data:any,id:any):void {
+ 
+  
+      
+        const dialogRef = this.dialog.open(EditAgencyComponent,{
+          data:this.data,
+          width : '950px',
+          height : '500px',
+          panelClass : 'my-dialog-class'
+        });
+        dialogRef.afterClosed().subscribe()
+     
+    
+     
+    } 
 
 
     logout(): void {
