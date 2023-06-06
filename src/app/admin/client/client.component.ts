@@ -50,6 +50,7 @@ export class ClientComponent implements OnInit {
   dataSource = new MatTableDataSource<User>();
 
   
+  searchQuery: string = '';
 
 
   constructor(private clientService: ClientService,
@@ -63,7 +64,10 @@ export class ClientComponent implements OnInit {
       );
 
   }
-//dialog
+applyFilter(event: Event) {
+  const filterValue = (event.target as HTMLInputElement).value;
+  this.dataSource.filter = filterValue.trim().toLowerCase();
+}  
 openAddUserDialog():void {
   const dialogConfig: MatDialogConfig = {
     panelClass: 'dialog-background',

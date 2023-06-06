@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from '../login/login-service';
 import { AgencyService } from './agency.service';
@@ -22,6 +22,7 @@ export class AgencyComponent {
   loadOf=false;
   loadR=false;
   
+
   
   today:any;
   date = new Date();
@@ -54,7 +55,6 @@ export class AgencyComponent {
 
      this.agService.getAg(this.persistedData.email).subscribe((response)=>{
         this.data=response;
-        console.log(this.data);
         
        
 
@@ -69,7 +69,7 @@ export class AgencyComponent {
         const dialogRef = this.dialog.open(EditAgencyComponent,{
           data:this.data,
           width : '950px',
-          height : '500px',
+          height : '550px',
           panelClass : 'my-dialog-class'
         });
         dialogRef.afterClosed().subscribe()

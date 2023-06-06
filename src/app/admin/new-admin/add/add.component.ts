@@ -32,7 +32,6 @@ export class AddComponent {
       MailSended:false
      
      };
-     console.log(data);
    
     
     Swal.fire({
@@ -44,9 +43,7 @@ export class AddComponent {
       confirmButtonText: 'OK',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.NaService.addUser(data).subscribe(response => {
-          console.log(response);
-        });
+        this.NaService.addUser(data).subscribe();
         this.dialogRef.close(data);
         this.openSnackBar('Admin added','OK');
 

@@ -21,7 +21,6 @@ export class EditAgenceComponent {
   updateUser(id:any,data:any) {
     this.clientService.getUserById(id).subscribe(() => {
       this.data = data;
-      console.log(data);
     
     });
     
@@ -36,9 +35,7 @@ export class EditAgenceComponent {
       }).then((result) => {
       if (result.isConfirmed) {
        
-        this.clientService.updateUser(id, data).subscribe(response => {
-          console.log(response);
-        });
+        this.clientService.updateUser(id, data).subscribe();
         this.dialogRef.close(data);
         this.openSnackBar('agence updated','OK');
 
@@ -47,7 +44,6 @@ export class EditAgenceComponent {
 onFileSelected(event: any) {
   this.selectedImage = event.target.files[0].name;
   this.data.log=this.selectedImage
-  console.log(this.selectedImage);
   
 }
 

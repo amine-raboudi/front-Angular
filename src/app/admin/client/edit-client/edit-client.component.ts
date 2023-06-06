@@ -43,7 +43,6 @@ export class EditClientComponent {
   updateUser(id:any,data:any) {
     this.clientService.getUserById(id).subscribe(() => {
       this.data = data;
-      console.log(id);
     
     });
     
@@ -57,9 +56,7 @@ export class EditClientComponent {
       showCancelButton: true,  
       }).then((result) => {
       if (result.isConfirmed) {
-      this.clientService.updateUser(id, data).subscribe(response => {
-      console.log(response);
-    });
+      this.clientService.updateUser(id, data).subscribe();
     this.dialogRef.close(data);
         this.openSnackBar('client updated','OK');
       }});

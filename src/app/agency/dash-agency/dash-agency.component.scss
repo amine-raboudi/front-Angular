@@ -1,0 +1,48 @@
+.mat-body {
+    font-size: var(--body-font-size, 16px);
+  }
+  
+  /* define the custom font size variable */
+  :host {
+    --body-font-size: 14px;
+  }
+
+  .custom-card1 {
+    background-color: #a84d4d;
+  }
+  .custom-card2 {
+    background-color: #343372;
+  }
+  .custom-card3 {
+    background-color: #33724b;
+  }
+  .custom-card4 {
+    background-color: #726933;
+  }
+  .custom-card5 {
+    background-color: #af741c;
+  }
+  .custom-card6 {
+    background-color: #8d1469;
+  }
+
+  table {
+    width: 1000px;
+    background-color: rgb(189, 187, 187);
+    color: rgb(88, 81, 72);
+
+  }
+  body{
+    background-color: rgb(42, 42, 43);
+  }
+  
+
+ th{
+  color: black;
+ }
+ td{
+  color: black;
+ }
+ tr{
+  color: black;
+ }

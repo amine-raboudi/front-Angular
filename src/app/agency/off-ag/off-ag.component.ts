@@ -47,7 +47,8 @@ export class OffAgComponent {
   id:any;
   users: any;
 
-  
+  searchQuery: string = '';
+
 
   constructor(private http: HttpClient,
     private matIconRegistry: MatIconRegistry,
@@ -77,6 +78,7 @@ export class OffAgComponent {
 
 
   ngOnInit() {
+
     this.agService.getAg(this.message).subscribe(data=>{
       this.dataAg=data;
       this.http.get<Offer[]>('http://127.0.0.1:8000/offer/offAg/'+ this.dataAg[0].id).subscribe(data => {
@@ -112,7 +114,10 @@ export class OffAgComponent {
   
   })
 }
-
+applyFilter(event: Event) {
+  const filterValue = (event.target as HTMLInputElement).value;
+  this.dataSource.filter = filterValue.trim().toLowerCase();
+}  
   Click(x:number){
     if(x==1){   
        this.clickAll=true;
@@ -169,7 +174,6 @@ export class OffAgComponent {
  
     
     data.Active=true  ;
-    console.log(data);
     this.OfferService.updateOffer(id, data).subscribe();
   
     

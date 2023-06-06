@@ -44,8 +44,8 @@ export class AddAgenceComponent {
       roles:["ROLE_AGENT"],
       status:this.status
      };
-     console.log(data);
-   
+
+     
     
     Swal.fire({
       icon: 'question',
@@ -56,9 +56,7 @@ export class AddAgenceComponent {
       confirmButtonText: 'OK',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.agenceService.addUser(data).subscribe(response => {
-          console.log(response);
-        });
+        this.agenceService.addUser(data).subscribe();
         this.dialogRef.close(data);
         this.openSnackBar('agence added','OK');
 

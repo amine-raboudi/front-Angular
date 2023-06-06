@@ -56,7 +56,6 @@ export class AddofferComponent {
       Agent:this.Agent
 
     };
-     console.log(data);
    
     
     Swal.fire({
@@ -68,9 +67,7 @@ export class AddofferComponent {
       confirmButtonText: 'OK',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.OfferService.addOffer(data).subscribe(response => {
-          console.log(response);
-        });
+        this.OfferService.addOffer(data).subscribe();
         this.dialogRef.close(data);
         this.openSnackBar('agence added','OK');
 

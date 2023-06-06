@@ -32,23 +32,23 @@ export interface User {
 })
 export class ClientsAgComponent implements OnInit {
 
-  @Input() message: any;
+  @Input() 
 
+  message: any;
   users: any;
   data: any;
   dataR:any;
   dataAg:any
   id: any;
   email: any;
-
   password: any;
   roles: any;
   is_verified: any;
   clientID:any;
-
   displayedColumns: string[] = ['id', 'email', 'password','roles','is_verified','edit'];
   dataSource = new MatTableDataSource<User>();
 
+  searchQuery: string = '';
 
   constructor(private clientService: ClientService,
     private _snackBar: MatSnackBar,
@@ -113,12 +113,13 @@ openEditUserDialog(data:any,id:any):void {
 } 
 
   ngOnInit() {
+
+    
     this.agService.getAg(this.message).subscribe(data=>{
       this.dataAg=data;
       this.http.get<User[]>('http://127.0.0.1:8000/reservation/agenceCli/'+ this.dataAg[0].id).subscribe(data => {
       
       this.dataSource.data = data;
-      console.log(data);
       
     });
     })
@@ -127,6 +128,10 @@ openEditUserDialog(data:any,id:any):void {
    
    
   }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }  
 
   deleteUser(id: number) {
     
@@ -157,12 +162,7 @@ openEditUserDialog(data:any,id:any):void {
     }
 
 
-SearchID() {
-  this.clientService.getUserById(this.id).subscribe(data => {
-    this.data = data;
-    console.log(data);
-  });
-}
+
 
 
 

@@ -311,7 +311,6 @@ export class RegisAgComponent {
     reader.onload = (event) => {
       const imageDataUrl = event.target?.result as string;
       // Save the imageDataUrl in your database
-      console.log('Image Data URL:', imageDataUrl);
       this.userForm.value.logo=imageDataUrl;
 
     };
@@ -324,7 +323,6 @@ export class RegisAgComponent {
     if (this.userForm.invalid) {
       return;
     }
-    console.log(this.userForm.value);
     
     this.http.post('http://localhost:8000/register/agent', this.userForm.value)
       .subscribe(

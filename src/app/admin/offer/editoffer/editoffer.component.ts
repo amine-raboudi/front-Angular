@@ -57,7 +57,6 @@ export class EditofferComponent {
   updateUser(id:any,data:any) {
     this.OfferService.getOfferById(id).subscribe(() => {
       this.data = data;
-      console.log(data);
     
     });
     
@@ -71,9 +70,7 @@ export class EditofferComponent {
       showCancelButton: true,  
       }).then((result) => {
       if (result.isConfirmed) {
-      this.OfferService.updateOffer(id, data).subscribe(response => {
-      console.log(response);
-    });
+      this.OfferService.updateOffer(id, data).subscribe();
     this.dialogRef.close(data);
         this.openSnackBar('Offe updated','OK');
       }});

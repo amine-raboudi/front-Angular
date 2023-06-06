@@ -68,13 +68,9 @@ openAddUserDialog():void {
 send(email:any,data:any,id:any) {
  
   this.emailService.sendEmail(email, 'Admin', 'Click <a href="http://127.0.0.1:8000/register/admin">HERE</a>')
-  .subscribe(response => {
-    console.log(response); // success response from Symfony 5 API
-  });
+  .subscribe();
   data.MailSended=true  ;
-  this.NAService.updateUser(id, data).subscribe(response => {
-    console.log(response);
-  });
+  this.NAService.updateUser(id, data).subscribe();
 
   
 }

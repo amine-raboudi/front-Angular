@@ -34,6 +34,8 @@ export class AdminsComponent {
   recipient: any;
   subject: any;
   message:  any;
+  searchQuery: string = '';
+
 
   displayedColumns: string[] = ['id', 'email', 'password','roles','status','action','edit'];
   dataSource = new MatTableDataSource<User>();
@@ -64,6 +66,10 @@ export class AdminsComponent {
     });
    
   } 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }  
   openEditUserDialog(data:any,id:any):void {
  
   
@@ -75,7 +81,6 @@ export class AdminsComponent {
         height : '500px',
         panelClass : 'my-dialog-class'
       });
-      console.log(data[0]);
       dialogRef.afterClosed().subscribe()
     });
   
@@ -118,9 +123,7 @@ export class AdminsComponent {
   Accept(email:any,data:any,id:any) {
  
     this.emailService.sendEmail(email, 'Admin', 'Click <a href="http://127.0.0.1:4200/login">HERE</a>')
-    .subscribe(() => {
-        console.log('ok'); // success response from Symfony 5 API
-    });
+    .subscribe();
     data.status="Accepted"  ;
     this.adminService.updateUser(id, data).subscribe();
   
@@ -132,9 +135,7 @@ export class AdminsComponent {
     
     data.status="Denied"  ;
     this.adminService.updateUser(id, data).subscribe(
-      () => {
-        console.log('ok');
-      }
+     
     );
   
     

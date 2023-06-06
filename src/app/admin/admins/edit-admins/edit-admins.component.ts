@@ -18,8 +18,6 @@ export class EditAdminsComponent {
   updateUser(id:any,data:any) {
     this.adminService.getUserById(id).subscribe(() => {
       this.data = data;
-      console.log(id);
-    
     });
     
     
@@ -33,7 +31,6 @@ export class EditAdminsComponent {
       }).then((result) => {
       if (result.isConfirmed) {
         this.adminService.updateUser(id, data).subscribe(response => {
-          console.log(response);
         });
         this.dialogRef.close(data);
         this.openSnackBar('agence updated','OK');

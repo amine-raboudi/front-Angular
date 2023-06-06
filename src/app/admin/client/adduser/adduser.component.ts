@@ -61,7 +61,6 @@ export class AdduserComponent implements OnInit{
       fullName:this.fullName
 
      };
-     console.log(data);
     Swal.fire({
       icon: 'question',
       title: 'Adding',
@@ -71,9 +70,7 @@ export class AdduserComponent implements OnInit{
       confirmButtonText: 'OK',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.clientService.addUser(data).subscribe(response => {
-          console.log(response);
-        });
+        this.clientService.addUser(data).subscribe();
         this.dialogRef.close(data);
         this.openSnackBar('client Added','OK');
       }});

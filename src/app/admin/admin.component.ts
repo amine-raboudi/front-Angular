@@ -3,6 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from '../login/login-service';
 import { AnimationKeyframesSequenceMetadata } from '@angular/animations';
 import { DataStorageService } from '../data-storage.service';
+import { AdminsService } from './admins/admins.service';
+import { EditAdminComponent } from './edit-admin/edit-admin.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -10,7 +13,7 @@ import { DataStorageService } from '../data-storage.service';
 })
 export class AdminComponent {
   persistedData: any;
-
+data:any
   loadDash=true;
 loadCl=false;
 loadAg=false;
@@ -27,7 +30,7 @@ password:any
 token:any
 roles:any
 
-  constructor(private dataStorageService: DataStorageService,private route: ActivatedRoute,private router: Router,private authService: LoginService) { 
+  constructor(private dialog: MatDialog,private dataStorageService: DataStorageService,private adService: AdminsService,private route: ActivatedRoute,private router: Router,private authService: LoginService) { 
    
    
 
@@ -45,17 +48,31 @@ const options = {
 }; // change to your desired time zone
     this.date=this.today.toLocaleString('en-US', options);
 this.persistedData = this.dataStorageService.getAd();
-console.log(this.persistedData)
+this.adService.getAd(this.persistedData.email).subscribe((response)=>{
+  this.data=response;
 
+  })
   }
-
   logout(): void {
         this.dataStorageService.clearAd();
         this.authService.logoutAd();
       }
     
     
+      openEditUserDialog():void {
+ 
+  
+      
+        const dialogRef = this.dialog.open(EditAdminComponent,{
+          width : '950px',
+          height : '550px',
+          panelClass : 'my-dialog-class'
+        });
+        dialogRef.afterClosed().subscribe()
+     
     
+     
+    } 
     
 
   

@@ -47,7 +47,8 @@ export class OfferComponent {
   id:any;
   users: any;
 
-  
+  searchQuery: string = '';
+
 
   constructor(private http: HttpClient,
     private matIconRegistry: MatIconRegistry,
@@ -106,7 +107,10 @@ export class OfferComponent {
     });
   
   }
-
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }  
   Click(x:number){
     if(x==1){   
        this.clickAll=true;
@@ -163,7 +167,6 @@ export class OfferComponent {
  
     
     data.Active=true  ;
-    console.log(data);
     this.OfferService.updateOffer(id, data).subscribe();
   
     

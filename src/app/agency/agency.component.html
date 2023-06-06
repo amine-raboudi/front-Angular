@@ -5,26 +5,25 @@
   <mat-sidenav-container  >
     
 
-      <mat-sidenav #sidenav class="sidenav"  style="background-color:#353a78;"  opened mode="side" position="start"  >
+      <mat-sidenav #sidenav class="sidenav"  style="background-color:#6644fc;"  opened mode="side" position="start"  >
           
          
          
         
           <mat-nav-list   >
-            <img mat-card-image class="logo" src="{{data.logo}}" alt="Photo of a Shiba Inu">
+            <img mat-card-image class="logo" src="{{data.logo}}" >
             <hr>
         <a mat-list-item (click)="navigateTo(1)"><mat-icon fontSize="large"style="margin-right:5px;">dashboard</mat-icon>DashBoard</a>
         <a mat-list-item  (click)="navigateTo(2)"><mat-icon  fontSize="large"style="margin-right:5px;">account_circle</mat-icon>Clients</a>
         <a mat-list-item (click)="navigateTo(6)"><mat-icon  fontSize="large"style="margin-right:5px;">local_offer</mat-icon>Offers</a>
         <a mat-list-item (click)="navigateTo(7)"><mat-icon  fontSize="large"style="margin-right:5px;">access_time</mat-icon>Reservations</a>
             <hr>
-            <a mat-list-item (click)="openEditUserDialog(data,data.id)"><mat-icon  fontSize="large"style="margin-right:5px;">settings</mat-icon>Settings</a>
+            <a mat-list-item (click)="openEditUserDialog(data,data.id)"><mat-icon  fontSize="large"style="margin-right:5px;">settings</mat-icon>Profile</a>
             <a mat-list-item (click)="logout()"><mat-icon  fontSize="large"style="margin-right:5px;">logout</mat-icon>Log Out</a>
 
 
   
       </mat-nav-list>
-      <hr>
 
       </mat-sidenav>
       <mat-sidenav-content    class="sidebar">
@@ -35,9 +34,11 @@
                   <mat-icon>menu</mat-icon>
                 </button>
                 <span>DashBoard</span>
+                <button mat-button  class="date"><mat-icon  style="margin-right:5px;">calendar_today</mat-icon>{{date}}</button>
+
               </mat-toolbar>
               <router-outlet></router-outlet>
-              <app-dashboard></app-dashboard>
+              <app-dash-agency  [message]="data.email"></app-dash-agency>
             </div>
             <div  *ngIf="loadCl">
               <mat-toolbar style="background-color:#77a3c7;"    >
@@ -45,6 +46,8 @@
                   <mat-icon>menu</mat-icon>
                 </button>
                 <span >Clients</span>
+                <button mat-button  class="date"><mat-icon  style="margin-right:5px;">calendar_today</mat-icon>{{date}}</button>
+
               </mat-toolbar>
               <router-outlet></router-outlet>
               <app-clientAg  [message]="data.email"></app-clientAg>
@@ -58,6 +61,8 @@
                   <mat-icon>menu</mat-icon>
                 </button>
                 <span>Offers</span>
+                <button mat-button  class="date"><mat-icon  style="margin-right:5px;">calendar_today</mat-icon>{{date}}</button>
+
               </mat-toolbar>
               <router-outlet></router-outlet>
               <app-off-ag [message]="data.email"></app-off-ag>
@@ -68,6 +73,8 @@
                   <mat-icon>menu</mat-icon>
                 </button>
                 <span>Reservations</span>
+                <button mat-button  class="date"><mat-icon  style="margin-right:5px;">calendar_today</mat-icon>{{date}}</button>
+
               </mat-toolbar>
               <router-outlet></router-outlet>
               <app-res-ag [message]="data.email"></app-res-ag>

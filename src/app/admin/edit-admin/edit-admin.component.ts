@@ -1,17 +1,25 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpClient } from '@angular/common/http';
+import { DataStorageService } from 'src/app/data-storage.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { map, startWith } from 'rxjs';
+import { AdminsService } from '../admins/admins.service';
 @Component({
-  selector: 'app-regis-ad',
-  templateUrl: './regis-ad.component.html',
-  styleUrls: ['./regis-ad.component.scss']
+  selector: 'app-edit-admin',
+  templateUrl: './edit-admin.component.html',
+  styleUrls: ['./edit-admin.component.scss']
 })
-export class RegisAdComponent {
+export class EditAdminComponent {
+  dataAg:any
+  data:any
+  message:any
+  persistedData:any
   hide = true;
   userForm!: FormGroup;
   countryFilterCtrl = new FormControl();
+  img:boolean=false
+  form!: FormGroup;
   countries: { name: string, code: string }[] = [ 
     {"name": "Afghanistan", "code": "af"}, 
     {"name": "land Islands", "code": "AX"}, 
@@ -256,26 +264,48 @@ export class RegisAdComponent {
     {"name": "Western Sahara", "code": "EH"}, 
     {"name": "Yemen", "code": "YE"}, 
     {"name": "Zambia", "code": "ZM"}, 
-    {"name": "Zimbabwe", "code": "ZW"} 
-    ]
-    filteredCountries: { name: string ,code: string }[];
+    {"name": "Zimbabwe", "code": "ZW"} ]
+  filteredCountries: { name: string ,code: string }[];
 
-  constructor(private http: HttpClient,private formBuilder: FormBuilder,private snackBar: MatSnackBar) {
-    this.filteredCountries = this.countries;
-    this.countryFilterCtrl.valueChanges.pipe(
-      startWith(''),
-      map(value => this.filterCountries(value))
-    ).subscribe(filteredCountries => {
-      this.filteredCountries = filteredCountries;
-    });
-   }
-   filterCountries(filterValue: string) {
+
+  constructor(
+    private snackBar: MatSnackBar,
+    private formBuilder: FormBuilder,
+    private dataStorageService: DataStorageService,
+    private http: HttpClient,
+    private adService: AdminsService ,
+    ) {
+      this.filteredCountries = this.countries;
+      this.countryFilterCtrl.valueChanges.pipe(
+        startWith(''),
+        map(value => this.filterCountries(value))
+      ).subscribe(filteredCountries => {
+        this.filteredCountries = filteredCountries;
+      });
+    
+  }
+
+  filterCountries(filterValue: string) {
     const filter = filterValue.toLowerCase();
     return this.countries.filter(country => country.name.toLowerCase().includes(filter));
   }
 
+  
 
   ngOnInit() {
+    this.persistedData = this.dataStorageService.getAg();
+
+    this.adService.getAd(this.persistedData.email).subscribe(data=>{
+      this.dataAg=data;
+      
+
+     this.adService.getUserById(this.dataAg[0].id).subscribe(data => {
+      
+      this.data = data;
+
+      
+    });
+    })
     this.userForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -286,10 +316,12 @@ export class RegisAdComponent {
       city: ['', [Validators.required ]],
       phoneNumber: ['', [Validators.required ]],
       logo: ['', [Validators.required ]],
+     
+
+
 
 
     }, { validator: this.passwordMatchValidator });
-   
   }
   passwordMatchValidator(formGroup: FormGroup) {
     const password = formGroup.get('password')?.value;
@@ -301,29 +333,44 @@ export class RegisAdComponent {
       formGroup.get('confirmPassword')?.setErrors(null);
     }
   }
+  openFileInput() {
+   
+    
+    const fileInput = document.getElementById('fileInput') as HTMLInputElement;
+    fileInput.click();
+    this.img=true
+    
 
 
-
+  }
+ 
   onFileSelected(event: any) {
+   
+      
     const file: File = event.target.files[0];
+    
+
     const reader = new FileReader();
     reader.onload = (event) => {
       const imageDataUrl = event.target?.result as string;
       // Save the imageDataUrl in your database
       this.userForm.value.logo=imageDataUrl;
-
     };
     reader.readAsDataURL(file);
-   
-    
-    // You can store the filePath in a variable or pass it to a function for further processing
+    event.stopPropagation();
+
   }
-  registerUser(): void {
-    if (this.userForm.invalid) {
-      return;
-    }
     
-    this.http.post('http://localhost:8000/register/admin', this.userForm.value)
+  
+  registerUser(data:any): void {
+   if(this.img==false){
+    this.userForm.value.logo=data.logo
+   }
+   this.userForm.value.roles=data.roles,
+   this.userForm.value.status= data.status,
+    
+    
+    this.http.put('http://localhost:8000/admin/update/'+this.dataAg[0].id, this.userForm.value)
       .subscribe(
         (response) => {
 

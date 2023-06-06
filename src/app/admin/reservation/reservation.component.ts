@@ -30,6 +30,9 @@ export class ReservationComponent {
 
   displayedColumns: string[] = ['id', 'Client', 'Offer','Agent','edit'];
   dataSource = new MatTableDataSource<Reservation>();
+  searchQuery: string = '';
+
+
 
   constructor(private ReservationService: ReservationService,
     private _snackBar: MatSnackBar,
@@ -116,7 +119,10 @@ export class ReservationComponent {
     }});
       }
     
-  
+      applyFilter(event: Event) {
+        const filterValue = (event.target as HTMLInputElement).value;
+        this.dataSource.filter = filterValue.trim().toLowerCase();
+      }  
       openSnackBar(message: string, action: any) {
         
         this._snackBar.open(message, action, {

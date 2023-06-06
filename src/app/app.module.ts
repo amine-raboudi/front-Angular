@@ -59,6 +59,8 @@ import {MatInputModule} from '@angular/material/input';
 import { ImageComponent } from './admin/agence/image/image.component';
 import { MatSelectSearchModule } from 'mat-select-search';
 import { EditAgencyComponent } from './agency/edit-agency/edit-agency.component';
+import { DashAgencyComponent } from './agency/dash-agency/dash-agency.component';
+import { EditAdminComponent } from './admin/edit-admin/edit-admin.component';
 
 const routes: Routes = [
   { path: 'admin/dashboard', component: AdminComponent }
@@ -136,6 +138,8 @@ const routes: Routes = [
      OffAgComponent,
      ImageComponent,
      EditAgencyComponent,
+     DashAgencyComponent,
+     EditAdminComponent,
      
 
     

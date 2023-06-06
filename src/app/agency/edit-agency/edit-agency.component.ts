@@ -303,7 +303,6 @@ export class EditAgencyComponent {
 
     this.agService.getAg(this.persistedData.email).subscribe(data=>{
       this.dataAg=data;
-      console.log(this.dataAg);
       
 
       this.http.get<Reservation[]>('http://127.0.0.1:8000/reservation/resAg/'+ this.dataAg[0].id).subscribe(data => {
@@ -355,7 +354,6 @@ export class EditAgencyComponent {
    
       
     const file: File = event.target.files[0];
-    console.log(file);
     
 
     const reader = new FileReader();
@@ -377,7 +375,6 @@ export class EditAgencyComponent {
    this.userForm.value.roles=data.roles,
    this.userForm.value.status= data.status,
     
-    console.log(this.userForm.value);
     
     this.http.put('http://localhost:8000/agence/update/'+this.dataAg[0].id, this.userForm.value)
       .subscribe(
