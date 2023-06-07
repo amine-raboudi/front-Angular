@@ -1,4 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common'
@@ -52,7 +53,6 @@ import { EditReservationComponent } from './admin/reservation/edit-reservation/e
 import { ClientsAgComponent } from './agency/clients-ag/clients-ag.component';
 import { ResAgComponent } from './agency/res-ag/res-ag.component';
 import { OffAgComponent } from './agency/off-ag/off-ag.component';
-import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
@@ -61,6 +61,11 @@ import { MatSelectSearchModule } from 'mat-select-search';
 import { EditAgencyComponent } from './agency/edit-agency/edit-agency.component';
 import { DashAgencyComponent } from './agency/dash-agency/dash-agency.component';
 import { EditAdminComponent } from './admin/edit-admin/edit-admin.component';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { AddOffComponent } from './agency/off-ag/add-off/add-off.component';
+import { EditOffComponent } from './agency/off-ag/edit-off/edit-off.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 const routes: Routes = [
   { path: 'admin/dashboard', component: AdminComponent }
@@ -70,6 +75,8 @@ const routes: Routes = [
 @NgModule({
 
   imports: [
+    MatNativeDateModule,
+    MatDatepickerModule,
     MatSelectSearchModule,
     MatFormFieldModule,
     MatInputModule, 
@@ -79,7 +86,6 @@ const routes: Routes = [
     MatGridListModule,
     MatCardModule,
     MatSnackBarModule,
-    MatIconModule,
     FormsModule,
     MatTableModule,
     MatMenuModule,
@@ -87,6 +93,7 @@ const routes: Routes = [
     MatIconModule,
     BrowserModule,
     CommonModule,
+    
     AppRoutingModule,
     NgbModule,
     HttpClientModule, 
@@ -97,7 +104,9 @@ const routes: Routes = [
     MatSidenavModule,
     MatListModule,
     MatToolbarModule,
-    NgxIntlTelInputModule,
+    MatFormFieldModule,
+    SlickCarouselModule,
+
     RouterModule.forRoot(routes),
     ],
   providers: [],
@@ -140,6 +149,8 @@ const routes: Routes = [
      EditAgencyComponent,
      DashAgencyComponent,
      EditAdminComponent,
+     AddOffComponent,
+     EditOffComponent,
      
 
     
@@ -148,7 +159,7 @@ const routes: Routes = [
   exports: [RouterModule],
 
   entryComponents: [],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA ]
 
 
 })

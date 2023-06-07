@@ -1,0 +1,83 @@
+    <h1 mat-dialog-titles style="text-align:center;color:#d8b9ed">Add Offer</h1>
+    <hr>
+
+    <form >
+        
+        
+          
+            <div>
+                <mat-form-field appearance="fill"   style="margin-left:50px;margin-bottom:20px;width:300px">
+                <mat-label>Title</mat-label>
+                <input matInput formControlName="Title"   placeholder=" Offer's title"  required>
+              </mat-form-field>
+              <mat-form-field appearance="fill" style="margin-left:10px;margin-bottom:20px;width:300px">
+                <mat-select  formControlName="category" placeholder="Select a Category"    >
+                    
+                    
+            <mat-option  value="1" selected >Hotel</mat-option>
+              <mat-option value="2" >Voyage</mat-option>
+              <mat-option value="3" >Omra</mat-option>
+              <mat-option value="4" >Voiture</mat-option>
+              <mat-option value="5">  Restaurant</mat-option>
+          
+                </mat-select>
+            </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="fill"    style="margin-left:50px;margin-bottom:20px;width:300px">
+                <mat-label>Price</mat-label>
+                <input matInput formControlName="Price" type="number" class="example-right-align" placeholder="0">
+                <span matTextPrefix>$</span>
+              </mat-form-field>
+              <mat-form-field appearance="fill" style="margin-left:10px;margin-bottom:20px;width:300px">
+                <mat-label>Description</mat-label>
+                <textarea   matInput formControlName="description" placeholder="Description" required></textarea>
+                 </mat-form-field>
+              
+            </div>
+            
+       
+            <div>
+                <mat-form-field appearance="fill"    style="margin-left:50px;margin-bottom:20px;width:300px">
+                    <mat-label>Choose Start-Date</mat-label>
+                    <input matInput formControlName="dateStart" [matDatepicker]="picker1">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field appearance="fill" style="margin-left:10px;margin-bottom:20px;width:300px">
+                <mat-label>Choose End-Date</mat-label>
+                    <input matInput formControlName="dateEnd"[matDatepicker]="picker2">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                 </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="fill"    style="margin-left:50px;margin-bottom:20px;width:300px">
+                    <mat-label>Choose Images</mat-label>
+                    <input   type="file" id="fileInput" style="display: none" formControlName="logo1"  value="logo"  (change)="onFileSelected($event,1)" required >
+                    <input   type="file" id="fileInput" style="display: none" formControlName="logo2"  value="logo"  (change)="onFileSelected($event,2)" required >
+                    <input   type="file" id="fileInput" style="display: none" formControlName="logo3"  value="logo"  (change)="onFileSelected($event,3)" required >
+                    
+              </mat-form-field>
+              
+            </div>
+            
+          
+            
+        
+            
+            
+           
+            
+          
+    <hr>
+       
+          <button mat-raised-button color="primary" style="margin-left:400px;"type="submit">Save</button>
+          
+    </form>
+    
+  
+
+  

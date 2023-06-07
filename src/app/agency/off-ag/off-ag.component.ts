@@ -7,11 +7,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { OfferService } from  'src/app/admin/offer/offer.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { AddofferComponent } from 'src/app/admin/offer/addoffer/addoffer.component';
 import { ShowofferComponent } from 'src/app/admin/offer/showoffer/showoffer.component';
 import { EditofferComponent } from 'src/app/admin/offer/editoffer/editoffer.component';
 import Swal from 'sweetalert2';
 import { AgencyService } from '../agency.service';
+import { AddOffComponent } from './add-off/add-off.component';
 
 
 export interface Offer {
@@ -68,7 +68,7 @@ export class OffAgComponent {
 }
 
 
-  displayedColumns: string[] = ['id', 'Price', 'DateStart','DateEnd','Category','Agent','Active','action','edit'];
+  displayedColumns: string[] = ['id','Title','description', 'Price', 'DateStart','DateEnd','Category','images','Active','action'];
   dataSource = new MatTableDataSource<Offer>();
   dataSource1 = new MatTableDataSource<Offer>();
   dataSource2 = new MatTableDataSource<Offer>();
@@ -199,7 +199,7 @@ applyFilter(event: Event) {
     const dialogConfig: MatDialogConfig = {
       panelClass: 'dialog-background',
     };
-    const dialogRef = this.dialog.open(AddofferComponent,{
+    const dialogRef = this.dialog.open(AddOffComponent,{
      
       width : '800px',
       height : '600px',
